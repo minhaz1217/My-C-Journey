@@ -1,0 +1,59 @@
+    f[0]= Food("Roti",60, 60, "many", "PCS", "" );
+    f[1]= Food("Porota",80, 80, "many", "PCS" ,"");
+    f[2]= Food("Bread",20, 20, "many", "PCS" ,"");
+    f[3]= Food("Egg(Boiled)",77, 77, "many", "PCS" ,"");
+    f[4]= Food("Egg(Omlet)",110, 110, "many", "PCS" ,"");
+    f[5]= Food("Egg(Fried)",100, 100, "many", "PCS" ,"");
+    f[6]= Food("Halua",125, 1.25, "much", "gram" ,"100");
+    f[7]= Food("Sandwich",120, 120, "many", "PCS" ,".5");
+    //Lunch:
+    f[8]= Food("Rice(Boiled)",250, 2.5, "much", "gram", "100" );
+    f[9]= Food("Rice(Fried/Cooked)",280, 2.8, "much", "gram", "100" );
+    f[10]= Food("Kichuri",151, 60, "much", "gram", "100" );
+    f[11]= Food("Dal",118, 1.18, "much", "gram", "100" );
+    f[12]= Food("Fish",80, 80, "many", "PCS", "" );
+    f[13]= Food("Meat - Chicken(Cooked)",220, 220, "many", "cup", "" );
+    f[14]= Food("Meat - Chicken(Fried)",250, 250, "many", "PCS", "" );
+    f[15]= Food("Meat - Beef",400, 400, "many", "cup", "" );
+    f[16]= Food("Meat - Mutton",150, 150, "many", "cup", "" );
+    f[17]= Food("Vegetable",80, 80, "many", "serving", "" );
+
+    //Fruit:
+    f[18]= Food("Apple",56, 56, "many", "PCS", "" );
+    f[19]= Food("Banana",95, 95, "many", "PCS", "" );
+    f[20]= Food("Mango",70 , 70, "many", "PCS", "" );
+    f[21]= Food("Orange",53, 53, "many", "PCS", "" );
+    f[22]= Food("Carrot",48, 48, "many", "PCS", "" );
+    f[23]= Food("Jackfruit",122,120, "many", "cup", "" );
+    f[24]= Food("Lichi",66, 6.6, "much", "gram", "100" );
+
+    //Snack:
+    f[25]= Food("Burger",325, 325, "many", "PCS", "" );
+    f[26]= Food("Pizza",375, 375, "many", "PCS", "" );
+    f[27]= Food("Ice-Cream",164, 164, "many", "scoop", "" );
+    f[28]= Food("Samosa",225, 225, "many", "PCS", "" );
+    f[29]= Food("French Fries",235, 23.5, "many", "PCS", "10" );
+    f[30]= Food("Potato Chips", 800, 8, "much", "gram", "100" );
+    f[31]= Food("Sweets",150, 1.5, "much", "gram", "100" );
+    f[32]= Food("Noodles",137, 1.37, "much", "gram", "100" );
+    f[33]= Food("Soup",150, 150, "many", "cup", "" );
+
+    //Drinks:
+    f[34]= Food("Tea",35, 35, "many", "cup", "" );
+    f[35]= Food("Cofee",50, 50, "many", "cup", "" );
+    f[36]= Food("Milk",100, 100, "many", "cup", "" );
+    f[37]= Food("Cold Drinks",95, 95, "many", "bottle", "" );
+    f[38]= Food("Apple Juice",95, 95, "many", "glass", "" );
+    ofstream outFood;
+    outFood.open("outfood.dat", ios::binary);
+    //Food(string n="", int cs = 0, float cc=0, string q1 = "", string q2 = "", string q3=""){
+
+    for(i=0;i<=38;i++){
+        outFood << f[i].getName() << endl;
+        outFood << f[i].getCalorieShow() << endl;
+        outFood << f[i].getCalorieCount() << endl;
+        outFood << f[i].getQuantity1() << endl;
+        outFood << f[i].getQuantity2() << endl;
+        outFood << f[i].getQuantity3() << endl;
+    }
+    outFood.close();

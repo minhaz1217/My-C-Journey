@@ -1,0 +1,3 @@
+C:/Users/Minhaz/Documents/Codeblocks 2016/CLION/cmake-build-debug/CMakeFiles/CLION.dir
+C:/Users/Minhaz/Documents/Codeblocks 2016/CLION/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Minhaz/Documents/Codeblocks 2016/CLION/cmake-build-debug/CMakeFiles/rebuild_cache.dir

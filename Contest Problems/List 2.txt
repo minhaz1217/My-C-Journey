@@ -1,0 +1,133 @@
+100         3n+1
+102         Ecological bin packing
+105         The skyline problme
+107         Cat in the hat
+113         Power of Cryptography
+119         Greedy gift givers
+136         Ugly number
+138         Street numbers
+151         Power crisis
+190         Circle through three points
+256         Quirksome numbers
+264         Count on Cantor
+272         TEX Quotes
+278         Chess
+294         Divisors
+299         Train Swapping
+343         What base is this
+355         The bases are loaded
+369         Combination
+371         Ackerman function
+382         Perfection
+386         Perfect cubes
+389         Basically speaking
+440         Eeny meeny moo
+458         The Decoder
+460         Overlapping rectangles
+471         Magic numbers
+474         Head tail probabilities
+488         Triangle Wave
+530         Bionomial showdown
+545         Heads
+575         Skew binary
+579         Clock hands
+591         Box of Bricks
+594         One little, two little, three little endians
+661         Blowing fuses
+694         The collatz sequence
+696         How many knights
+706         LC Display
+880         Cantor fractions
+900         Brick Wall patterns
+913         Joana and the odd numbers
+974         Kaprekar numbers
+1225       Hours and minutes
+10035    Primary Arithmetic
+10038    Jolly jumpers
+10041    Vito's family
+10055    hashmat the brave warrior
+10062    Tell me the frequencies
+10070    leap year or not leap year and …..
+10071    Back to High School physics
+10079    Pizza Cutting
+10082    WERTYU
+10101    Bangla Numbers
+10110    Light more light
+10170    The hotel with infinite rooms
+10242    Fourth Point
+10302    Summation of polynomials
+10323    Factorials you must be kidding
+10327    Flip Sort
+10346    Peters smokes
+10370    Above Average
+10424    Love Calculator
+10469    To carry or not to carry
+10473    Simple base conversion
+10494    If We were a child again
+10499    Land of justice
+10591    Happy Number
+10696    F91
+10773    Back to intermidiate math
+10783    Odd sum
+10784    Diagonal
+10849    Move the bishop
+10812    Beat the spread
+10921    Find the telephone
+10924    Prime words
+10931    Parity
+10945    Mother Bear
+10970    Big Chocolate
+11000    Bee
+11044    Searching for nessy
+11057    Exact sum
+11121    Base -2
+11150    Cola
+11172    Relational operator
+11185    Ternary
+11192    Group Reverse
+11219    How old are you
+11332    Summing digits
+11364    Parking
+11417    GCD
+11428    Cubes
+11461    Square Numbers
+11479    Is this the easiest problem
+11530    SMS typing
+11541    Decoding
+11547    Automatic Answer
+11608    No problem
+11636    Hello World!
+11650    Mirror Clock
+11677    Alarm Clock
+11689    Soda Surpler
+11713    Abstract Names
+11715    Car
+11716    Digital Fortress
+11727    Cost cutting
+11734    Big Number of Teams will solve this
+11743    Credit Check
+11764    Jumping Mario
+11777    Automate the Grade
+11799    Horror Dash
+11805    Bafana Bafana
+11854    Egypt
+11875    Brick Game
+11909    Soya milk
+11934    Magic Formula
+11936    Lazy lumberzack
+11970    Lucky Numbers
+11984    A change in Thermal Unit
+12015    Google is Feeling Lucky
+12136    Schedule of marriage
+12250    Language Detection
+12372    Packing for Holiday
+12403    Save Setu
+12459    Bees' ancestors
+12468    Zapping
+12502    Three families
+12531    Hours and  Minutes
+12543    Longest Word
+12577    Hajj –e-Akbar
+12578    10:6:2
+12611    Beautiful flag
+12626    I Love Pizza

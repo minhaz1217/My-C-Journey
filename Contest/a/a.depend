@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1476441892 source:c:\users\hafsa habib\desktop\a\main.cpp
+	<stdio.h>
+
+1476442404 source:c:\users\hafsa habib\desktop\a\e.cpp
+	<stdio.h>
+	<iostream>
+	<iomanip>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="NewDialog">
+		<object class="wxChoice" name="ID_CHOICE1" variable="Choice1" member="yes">
+			<pos>112,128</pos>
+		</object>
+		<object class="wxComboBox" name="ID_COMBOBOX1" variable="ComboBox1" member="yes">
+			<pos>176,232</pos>
+		</object>
+	</object>
+</wxsmith>

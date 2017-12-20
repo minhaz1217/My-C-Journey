@@ -1,0 +1,8 @@
+
+**** Rebuild of configuration Debug for project 1 ****
+
+**** Internal Builder is used for build               ****
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -osrc\1.o ..\src\1.cpp
+g++ -o1.exe src\1.o
+Build complete for project 1
+Time consumed: 4559  ms.  

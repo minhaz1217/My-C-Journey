@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1446667744 source:e:\lab\minhaz\guitest\main.cpp
+	<tchar.h>
+	<windows.h>
+

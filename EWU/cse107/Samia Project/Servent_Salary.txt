@@ -1,0 +1,10 @@
+Servent 44000
+Servent 30000
+Servent 15000
+Servent 17000
+Servent salary: 106000
+Servent 44000
+Servent 30000
+Servent 15000
+Servent 17000
+Servent salary: 106000

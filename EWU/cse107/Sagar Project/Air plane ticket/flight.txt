@@ -1,0 +1,11 @@
+
+From Dhaka (DAC)	To Chittagong (CGP)
+
+								  First  Economy
+	Flight(s) 	Take Off 	Route 		Landing   class  class 
+
+1.	BG-227 		04:30 PM 	Nonstop 	05:15 PM  6,000	 4,000
+
+2.	BG-145 		08:50 PM 	Nonstop 	09:35 PM  6,000	 4,000
+
+3.	BG-37 		10:05 PM 	Nonstop 	10:50 PM  6,000  4,000

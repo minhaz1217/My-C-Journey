@@ -1,0 +1,8 @@
+Junior Employee 60000
+Junior Employee 90000
+Junior Employee 74000
+Salary Of junior Employees: 224000
+Junior Employee 60000
+Junior Employee 90000
+Junior Employee 74000
+Salary Of junior Employees: 224000
