@@ -1,0 +1,9 @@
+#general
+.git 
+.idea
+
+#for c
+*.o
+.o
+.exe
+desktop.ini
