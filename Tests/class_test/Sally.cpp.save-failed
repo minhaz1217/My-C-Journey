@@ -1,0 +1,6 @@
+#include "Sally.h"
+#include<iostream>
+using namespace std;
+Sally::Sally(string test){
+    cout << "HELLO" << endl;
+}

@@ -17,7 +17,7 @@ long long gcd(long long a,long long b){
 }
 int main(){
     long long a,b,n;
-    cin >> a >> b >> n;
+    cin >> a >> b ;
     cout << gcd(a,b);
     // gcd of 6,3 is 3
     // gcd of 5,3 is 1

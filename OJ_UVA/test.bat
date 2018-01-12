@@ -1,0 +1,1 @@
+"11902 - Dominator.exe"<in.txt>out.txt

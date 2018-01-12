@@ -1,9 +1,0 @@
-
-**** Build of configuration Debug for project a ****
-
-**** Internal Builder is used for build               ****
-g++ -oa.exe src\a.o
-c:/mingw/bin/../lib/gcc/x86_64-w64-mingw32/4.8.2/../../../../x86_64-w64-mingw32/bin/ld.exe: cannot open output file a.exe: Permission denied
-collect2.exe: error: ld returned 1 exit status
-Build error occurred, build is stopped
-Time consumed: 175  ms.  
