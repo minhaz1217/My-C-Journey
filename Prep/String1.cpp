@@ -4,7 +4,11 @@ using namespace std;
 #define msg(a,b) cout << a << " : " << b << endl;
 
 int main(){
-    string str, str2,str3, str4;
+    string str, str2,str3, str4, str5;
+    str5 = "MEH";
+    char c[200];
+    cout << str5 << " : " << str5.c_str() << endl;
+
     cout << "Insert" << endl;
     //insert
     str.insert(0, "HELLO");
@@ -50,7 +54,8 @@ int main(){
     double f = 23.324;
     int a = 22;
     string si = "11";
-    int b = stoi(si);
+    int b;
+    //b = stoi(si);
     cout << b << endl;
     cout << si << endl;
 
