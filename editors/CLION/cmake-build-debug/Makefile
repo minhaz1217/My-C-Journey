@@ -47,10 +47,10 @@ RM = "C:\Program Files\JetBrains\CLion 2017.2.2\bin\cmake\bin\cmake.exe" -E remo
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION"
+CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles\progress.marks"
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -149,6 +149,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+test.obj: test.cpp.obj
+
+.PHONY : test.obj
+
+# target to build an object file
+test.cpp.obj:
+	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/test.cpp.obj
+.PHONY : test.cpp.obj
+
+test.i: test.cpp.i
+
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/test.cpp.s
+.PHONY : test.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,6 +188,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... test.obj
+	@echo ... test.i
+	@echo ... test.s
 .PHONY : help
 
 

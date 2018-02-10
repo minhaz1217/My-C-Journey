@@ -3,3 +3,5 @@
 
 CMakeFiles/CLION.dir/main.cpp.obj: ../main.cpp
 
+CMakeFiles/CLION.dir/test.cpp.obj: ../test.cpp
+

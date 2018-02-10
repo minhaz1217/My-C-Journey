@@ -18,19 +18,21 @@ int main(){
         for(i=0;i<n;i++){
             scanf("%lld", &a);
             arr[i] = a;
-            if(sum + a > k){
-                while(sum+a > k && lastIndex != i){
+            if(sum == 0 && a < k){
+                lastIndex = i;
+            }
+            sum = sum + a;
+            counter++;
+            if(sum > k){
+                while(sum > k){
                     sum = sum - arr[lastIndex];
-                    lastIndex = lastIndex +1;
                     counter--;
+                    lastIndex++;
+                    if(sum <= 0){
+                        sum = 0;
+                        break;
+                    }
                 }
-                if(lastIndex == i){
-                    sum = 0;
-                    counter = 0;
-                }
-            }else{
-                sum += a;
-                counter++;
             }
             if(counter > myMx){
                 myMx = counter;

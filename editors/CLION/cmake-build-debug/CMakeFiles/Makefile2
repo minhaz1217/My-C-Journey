@@ -53,10 +53,10 @@ RM = "C:\Program Files\JetBrains\CLion 2017.2.2\bin\cmake\bin\cmake.exe" -E remo
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION"
+CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug"
 
 #=============================================================================
 # Target rules for target CMakeFiles/CLION.dir
@@ -65,7 +65,7 @@ CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-
 CMakeFiles/CLION.dir/all:
 	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/depend
 	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target CLION"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" --progress-num=1,2,3 "Built target CLION"
 .PHONY : CMakeFiles/CLION.dir/all
 
 # Include target in all.
@@ -75,9 +75,9 @@ all: CMakeFiles/CLION.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/CLION.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" 3
 	$(MAKE) -f CMakeFiles\Makefile2 CMakeFiles/CLION.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/CLION.dir/rule
 
 # Convenience name for target.

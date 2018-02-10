@@ -4,7 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Minhaz/Documents/Codeblocks 2016/CLION/main.cpp" "C:/Users/Minhaz/Documents/Codeblocks 2016/CLION/cmake-build-debug/CMakeFiles/CLION.dir/main.cpp.obj"
+  "C:/Users/Minhaz/Documents/Codeblocks 2016/editors/CLION/main.cpp" "C:/Users/Minhaz/Documents/Codeblocks 2016/editors/CLION/cmake-build-debug/CMakeFiles/CLION.dir/main.cpp.obj"
+  "C:/Users/Minhaz/Documents/Codeblocks 2016/editors/CLION/test.cpp" "C:/Users/Minhaz/Documents/Codeblocks 2016/editors/CLION/cmake-build-debug/CMakeFiles/CLION.dir/test.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

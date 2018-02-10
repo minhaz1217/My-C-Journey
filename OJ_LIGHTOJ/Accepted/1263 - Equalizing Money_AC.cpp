@@ -9,8 +9,6 @@ int arr[MX];
 int visited[MX];
 
 
-
-
 int main(){
     int tc,n,m,sum,u,v,counter,i,j,myMath, flag,caseCounter = 1;
     queue<int> q;

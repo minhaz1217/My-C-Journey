@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CLION.dir/main.cpp.obj"
+  "CMakeFiles/CLION.dir/test.cpp.obj"
   "CLION.pdb"
   "CLION.exe"
   "CLION.exe.manifest"

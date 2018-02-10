@@ -42,10 +42,10 @@ RM = "C:\Program Files\JetBrains\CLion 2017.2.2\bin\cmake\bin\cmake.exe" -E remo
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION"
+CMAKE_SOURCE_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/CLION.dir/depend.make
@@ -58,16 +58,16 @@ include CMakeFiles/CLION.dir/flags.make
 
 CMakeFiles/CLION.dir/main.cpp.obj: CMakeFiles/CLION.dir/flags.make
 CMakeFiles/CLION.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CLION.dir/main.cpp.obj"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CLION.dir\main.cpp.obj -c "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CLION.dir/main.cpp.obj"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CLION.dir\main.cpp.obj -c "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\main.cpp"
 
 CMakeFiles/CLION.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CLION.dir/main.cpp.i"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\main.cpp" > CMakeFiles\CLION.dir\main.cpp.i
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\main.cpp" > CMakeFiles\CLION.dir\main.cpp.i
 
 CMakeFiles/CLION.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CLION.dir/main.cpp.s"
-	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\main.cpp" -o CMakeFiles\CLION.dir\main.cpp.s
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\main.cpp" -o CMakeFiles\CLION.dir\main.cpp.s
 
 CMakeFiles/CLION.dir/main.cpp.obj.requires:
 
@@ -80,19 +80,45 @@ CMakeFiles/CLION.dir/main.cpp.obj.provides: CMakeFiles/CLION.dir/main.cpp.obj.re
 CMakeFiles/CLION.dir/main.cpp.obj.provides.build: CMakeFiles/CLION.dir/main.cpp.obj
 
 
+CMakeFiles/CLION.dir/test.cpp.obj: CMakeFiles/CLION.dir/flags.make
+CMakeFiles/CLION.dir/test.cpp.obj: ../test.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CLION.dir/test.cpp.obj"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\CLION.dir\test.cpp.obj -c "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\test.cpp"
+
+CMakeFiles/CLION.dir/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CLION.dir/test.cpp.i"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\test.cpp" > CMakeFiles\CLION.dir\test.cpp.i
+
+CMakeFiles/CLION.dir/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CLION.dir/test.cpp.s"
+	C:\PROGRA~2\CODEBL~1\MinGW\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\test.cpp" -o CMakeFiles\CLION.dir\test.cpp.s
+
+CMakeFiles/CLION.dir/test.cpp.obj.requires:
+
+.PHONY : CMakeFiles/CLION.dir/test.cpp.obj.requires
+
+CMakeFiles/CLION.dir/test.cpp.obj.provides: CMakeFiles/CLION.dir/test.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\CLION.dir\build.make CMakeFiles/CLION.dir/test.cpp.obj.provides.build
+.PHONY : CMakeFiles/CLION.dir/test.cpp.obj.provides
+
+CMakeFiles/CLION.dir/test.cpp.obj.provides.build: CMakeFiles/CLION.dir/test.cpp.obj
+
+
 # Object files for target CLION
 CLION_OBJECTS = \
-"CMakeFiles/CLION.dir/main.cpp.obj"
+"CMakeFiles/CLION.dir/main.cpp.obj" \
+"CMakeFiles/CLION.dir/test.cpp.obj"
 
 # External object files for target CLION
 CLION_EXTERNAL_OBJECTS =
 
 CLION.exe: CMakeFiles/CLION.dir/main.cpp.obj
+CLION.exe: CMakeFiles/CLION.dir/test.cpp.obj
 CLION.exe: CMakeFiles/CLION.dir/build.make
 CLION.exe: CMakeFiles/CLION.dir/linklibs.rsp
 CLION.exe: CMakeFiles/CLION.dir/objects1.rsp
 CLION.exe: CMakeFiles/CLION.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable CLION.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CLION.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\CLION.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -101,6 +127,7 @@ CMakeFiles/CLION.dir/build: CLION.exe
 .PHONY : CMakeFiles/CLION.dir/build
 
 CMakeFiles/CLION.dir/requires: CMakeFiles/CLION.dir/main.cpp.obj.requires
+CMakeFiles/CLION.dir/requires: CMakeFiles/CLION.dir/test.cpp.obj.requires
 
 .PHONY : CMakeFiles/CLION.dir/requires
 
@@ -109,6 +136,6 @@ CMakeFiles/CLION.dir/clean:
 .PHONY : CMakeFiles/CLION.dir/clean
 
 CMakeFiles/CLION.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug" "C:\Users\Minhaz\Documents\Codeblocks 2016\CLION\cmake-build-debug\CMakeFiles\CLION.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug" "C:\Users\Minhaz\Documents\Codeblocks 2016\editors\CLION\cmake-build-debug\CMakeFiles\CLION.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/CLION.dir/depend
 

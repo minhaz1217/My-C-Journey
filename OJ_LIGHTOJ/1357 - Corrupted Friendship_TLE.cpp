@@ -3,26 +3,25 @@ using namespace std;
 #define check(a) cout << a << endl;
 #define msg(a,b) cout << a << " : " << b << endl;
 #define MX 100005
+vector<int> mat[MX];
 int p[MX],cc[MX],visited[MX];
 int main(){
     int tc,n,u,v,t,temp,i,j,sum,caseCounter = 1;
     queue<int>q;
 
-    scanf("%d", &tc);
-    //cin >> tc;
+    cin >> tc;
     while(tc--){
-        scanf("%d", &n);
-        vector<int> mat[n+4];
-        //cin >> n;
+        cin >> n;
         for(i=0;i<=n;i++){
             p[i] = -1;
             cc[i] = 0;
-            //mat[i].clear();
+            mat[i].clear();
             visited[i] = 0;
         }
+
+
         for(i=1;i<n;i++){
-            scanf("%d %d", &u, &v);
-            //cin >> u >> v;
+            cin >> u >> v;
             mat[u].push_back(v);
             mat[v].push_back(u);
             //mat[u][v] = 1;
@@ -57,22 +56,21 @@ int main(){
                     q.push(t);
                 }
             }
-            /*
+
             for(i=1;i<=n;i++){
 
                 cout << cc[i] << " ";
             }
             cout << endl << endl;
-            */
+
         }
         sum = 0;
-
             for(i=1;i<=n;i++){
 
-                //cout << cc[i] << " ";
+                cout << cc[i] << " ";
                 sum = sum + (n-1-cc[i]);
             }
-            //cout << endl;
+            cout << endl;
 
             cout << "Case "<< caseCounter++ << ": " << n-1 << " " << sum/2 << endl;
 

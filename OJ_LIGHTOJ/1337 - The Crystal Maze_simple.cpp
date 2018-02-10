@@ -23,16 +23,15 @@ int main(){
             visited[i][j] = 0;
         }
         for(i=0;i<n;i++){
-            for(j=0;j<m;j++){
-                cin >> mat[i][j];
-            }
+            scanf("%s", &mat[i]);
         }
         cout << "Case "<< caseCounter++ << ":" << endl;
 
         mark = 0;
         while(q--){
             queue<pair<int, int> >q;
-            cin >> x >> y;
+            //cin >> x >> y;
+            scanf("%d%d",&x, &y);
             x--;
             y--;
             mark++;
@@ -60,11 +59,9 @@ int main(){
                 }
 
             }
-            cout << counter << endl;
+            printf("%d\n", counter);
+            //cout << counter << endl;
         }
-
-
-
     }
     return 0;
 }

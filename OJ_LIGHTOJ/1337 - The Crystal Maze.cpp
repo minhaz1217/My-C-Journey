@@ -1,5 +1,8 @@
-#include<bits/stdc++.h>
-//#include<iostream>
+#include<iostream>
+#include<cstdio>
+#include<map>
+#include<vector>
+#include<queue>
 using namespace std;
 #define check(a) cout << a << endl;
 #define cc(a) cout << a << endl;
@@ -16,7 +19,8 @@ int visited[MX][MX];
 int main(){
     int i,j,n,m,mq,x,y,u,v,uu,vv,mark,counter,tc,caseCounter = 1;
     map<pair<int, int>, int>mp;
-    cin >> tc;
+    scanf("%d", &tc);
+    //cin >> tc;
     while(tc--){
         vector<pair<int, int> > vec;
         queue<pair<int, int> > qq;
@@ -28,14 +32,14 @@ int main(){
                 }
         }
         for(i=0;i<n;i++){
-            for(j=0;j<m;j++){
-                cin >> mat[i][j];
-            }
+            scanf("%s", &mat[i]);
         }
-        cout << "Case "<< caseCounter++ << ":" << endl;
+        printf("Case %d:\n", caseCounter++);
+        //cout << "Case "<< caseCounter++ << ":" << endl;
         mark = 0;
         while(mq--){
-            cin >> x >> y;
+            scanf("%d%d",&x,&y);
+            //cin >> x >> y;
             x--;
             y--;
             if(mat[x][y] == 'C'){
@@ -98,7 +102,8 @@ int main(){
         }
         for(i=0;i<vec.size();i++){
             counter = mp[make_pair(vec[i].first, vec[i].second)];
-            cout << counter << endl;
+            //cout << counter << endl;
+            printf("%d\n", counter);
         }
 
 

@@ -8,7 +8,7 @@ void sieve(){
     }
     for(i=2;i<=root;i++){
         if(arrPrime[i] == 1){
-            for(j=2;i*j<=SIEVE;j++){
+            for(j=i;i*j<=SIEVE;j++){
                 arrPrime[i*j] = 0;
             }
         }
