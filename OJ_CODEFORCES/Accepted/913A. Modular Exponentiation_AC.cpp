@@ -8,9 +8,16 @@ using namespace std;
 
 int main(){
 
-    string str = "HELLO WORLD", str2;
-    str2 = str.substr(1,6);
-    cout << str2 << endl;
+    long long int m,n,sum,i;
+    cin >> n >> m;
+    for(i=1;i<= n;i++){
+        sum = pow(2,i);
+        if(sum > m){
+            cout << m << endl;
+            return 0;
+        }
+    }
+    cout << m % sum << endl;
 
 
     return 0;

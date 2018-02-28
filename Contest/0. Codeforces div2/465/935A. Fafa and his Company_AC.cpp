@@ -7,11 +7,13 @@ using namespace std;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 
 int main(){
-
-    string str = "HELLO WORLD", str2;
-    str2 = str.substr(1,6);
-    cout << str2 << endl;
-
-
+    int n,counter=0,i;
+    cin >> n;
+    for(i=1;i<n;i++){
+        if(n%i == 0){
+            counter++;
+        }
+    }
+    cout << counter << endl;
     return 0;
 }

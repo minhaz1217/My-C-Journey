@@ -24,7 +24,7 @@ int main(){
     it2 = vecInsert.begin();
     it2 = vecInsert.insert(it2, 10);
     vecInsert.insert(it2,2, 20); // position address, number, value
-    vecInsert.insert(vecInsert.begin() + 1, 50);
+    vecInsert.insert(vecInsert.begin() + 1, 50); // insert 50 at position 2
 
     //Erase Vector
     vecInsert.erase(vecInsert.begin()); // erasing first element

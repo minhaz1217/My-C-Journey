@@ -1,7 +1,7 @@
 #include<iostream>
 #include<math.h>
 using namespace std;
-const int arrSize = 500;
+const int arrSize = 10000;
 int arrPrime[arrSize] = {1};
 int populateWithSieve(){
     int i,j, root = sqrt(arrSize);

@@ -1,3 +1,4 @@
+// -1 -2 1
 #include<bits/stdc++.h>
 using namespace std;
 #define check(a) cout << a << endl;
@@ -42,7 +43,7 @@ int main(){
             }
             if(k == 1){
                 sum += arr[i];
-                continue;
+
             }else if(k == 2){
                 arr[i+n] = arr[i];
             }else{

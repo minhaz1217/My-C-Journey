@@ -8,9 +8,11 @@ using namespace std;
 
 int main(){
 
-    string str = "HELLO WORLD", str2;
-    str2 = str.substr(1,6);
-    cout << str2 << endl;
+    for(i=1;i<=6;i++){
+        cin >>
+    }
+
+
 
 
     return 0;

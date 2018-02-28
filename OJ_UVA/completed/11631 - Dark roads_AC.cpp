@@ -6,32 +6,6 @@ using namespace std;
 #define msg(a,b) cout << a << " : " << b << endl;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 
-int main(){
-
-
-    return 0;
-}
-
-/*
-cout << "Case "<< caseCounter++ << ": " << endl;
-for(int pq=0;pq<MX;pq++){
-    for(int PQ=0;PQ<MX;PQ++){
-        printf("%2d ", mat[pq][PQ]);
-        //cout << mat[i][j] << " ";
-    }
-    cout << endl;
-}
-/*
-Minhazul Hayat Khan
-EWU
-Problem Name:
-Problem Link:
-Date : 9 / February / 2018
-Comment:
-
-
-//-----Disjoint Set Union ------
-
 
 class disjoint_set{
 private:
@@ -41,7 +15,7 @@ public:
         p.assign(n, 0);
         rt.assign(n, 0);
         for(int i=0;i<n;i++){
-            p[i] = i ;
+            p[i] = i;
         }
     }
     int findSet(int x){
@@ -70,7 +44,38 @@ public:
         }
     }
 };
-//-----------Disjoint END-----------
+int main(){
+    long long int n,m,u,v,w,cost,i,sz,sum;
+    while(1){
+        scanf("%lld%lld", &n, &m);
+        if(n==0 && m==0){
+            break;
+        }
+        vector<pair<int, pair<int,int> > >edges;
+
+        disjoint_set dj(n);
+        sum = 0;
+        for(i=0;i<m;i++){
+            cin >> u >> v >> w;
+            sum += w;
+            edges.push_back(make_pair(w, make_pair(u,v)));
+        }
+        //cc(edges.size())
+        sort(edges.begin(), edges.end());
+        sz = edges.size();
+        cost= 0;
+        for(i=0;i<sz;i++){
+            u = edges[i].second.first;
+            v = edges[i].second.second;
+            w = edges[i].first;
+            if(!dj.isSameSet(u,v)){
+                cost += w;
+                dj.unionSet(u,v);
+            }
+        }
+        printf("%lld\n", sum-cost);
+    }
 
 
-*/
+    return 0;
+}

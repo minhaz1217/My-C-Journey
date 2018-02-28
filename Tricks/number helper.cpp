@@ -8,10 +8,9 @@ using namespace std;
 
 int main(){
 
-    string str = "HELLO WORLD", str2;
-    str2 = str.substr(1,6);
-    cout << str2 << endl;
+    int a,b;
 
-
+    cin >> a >> b;
+    cout << a %b << endl;
     return 0;
 }
