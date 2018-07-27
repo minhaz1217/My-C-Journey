@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Help Optimus! | EWU Individual Programming Contest 2018 | Toph</title>
+		<style>
+			html,body{
+				height: 100%;
+				margin: 0;
+			}
+
+			body{
+				background: #eff3f8;
+			}
+
+			.container{
+				min-height: 100%;
+				margin-bottom: -35px;
+			}
+
+			.container:after{
+				content: "";
+				display: block;
+			}
+
+			.inner{
+				width: 850px;
+				margin:0 auto;
+				padding-top: 21.5px;
+				margin-bottom: 20px;
+			}
+
+			header{
+				display: inline-block;
+				width: 100%;
+				margin-bottom: 15px;
+			}
+
+			header .left{
+				color: #555;
+				float: left;
+				font-size: 22px;
+				font-weight: 400;
+				font-family: 'Helvetica', sans-serif;
+				margin-top: 5px;
+			}
+
+			header .right{
+				float: right;
+			}
+
+			header .right .logo{
+				height: 32px;
+			}
+
+			.portlet-like{
+				background: #fff;
+				padding: 20px;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-ms-border-radius: 4px;
+				-o-border-radius: 4px;
+				border-radius: 4px;
+				color: #333;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 1em;
+				line-height: 1.6em;
+			}
+
+			.portlet-like h2{
+				font-size: 30px;
+				font-weight: 400;
+				margin-bottom: 10px;
+			}
+
+			.portlet-like p{
+				margin: 0 0 20px 0;
+			}
+
+			.portlet-like code {
+				padding: 10px;
+				font-size: 15px;
+				color: black;
+				text-shadow: 0 1px white;
+				background-color: #fff;
+				border: 1px solid #f1f4f7;
+				display: block;
+				border-radius: 2px;
+				line-height: 1.5;
+				hyphens: none;
+				font-family: 'Ubuntu Mono', monospace;
+				word-spacing: normal;
+				word-break: normal;
+				word-wrap: normal;
+				margin-bottom: 5px;
+				tab-size: 4;
+			}
+
+			.portlet-like small,.portlet-like .small {
+				font-size: 85%;
+			}
+
+			.portlet-like h4 {
+				font-size: 18px;
+				font-weight: 400;
+			}
+
+			.portlet-like .table-scrollable {
+				width: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				margin: 10px 0 !important;
+			}
+
+			.portlet-like .table-scrollable > .table {
+				width: 100% !important;
+				margin: 0 !important;
+				margin-bottom: 0;
+				background-color: #fff;
+			}
+
+			.portlet-like .table th{
+				text-align: left;
+				border-bottom: 1px solid #F2F5F8;
+				font-size: 13px;
+			}
+
+			.portlet-like .table.table-light>tbody>tr>td.pre {
+				font-size: 1.1em;
+			}
+
+			.portlet-like .pre,
+			.portlet-like .table.table-light>tbody>tr>td.pre,
+			.portlet-like code,
+			.portlet-like code[class*=language-],
+			.portlet-like pre,
+			.portlet-like pre[class*=language-] {
+				font-family: monospace;
+				white-space: pre;
+			}
+
+			.portlet-like p img {
+				display: block;
+				margin: 0 auto;
+			}
+
+			footer{
+				width: 100%;
+				color: #555;
+				text-align: center;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 13px;
+				font-weight: 300;
+			}
+
+			footer a{
+				text-decoration: none;
+				color: #337ab7;
+			}
+
+			.container:after, footer{
+				height: 35px;
+			}
+
+			@media screen and (max-width: 991px) {
+				.inner{
+					width: 80%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="inner">
+				<header>
+					<div class="left">
+						EWU Individual Programming Contest 2018
+					</div>
+					<div class="right">
+						<a target="_blank" href="https://toph.co">
+							<img class="logo" src="data:image/png;base64,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" alt="Toph Logo"/>
+						</a>
+					</div>
+				</header>
+				<div class="portlet-like">
+					
+	<div class="portlet light problem-statement-portlet">
+		<div class="portlet-body">
+			
+			
+
+			<h2 style="margin-top: 0;">Help Optimus!</h2>
+			<div>
+				<span title="CPU: 1s, Memory: 256 MB, Source: 32 kB">Limits: 1s, 256 MB</span>
+			</div>
+			<br>
+
+			<div><p>In an alternate reality, due to a prolonged battle between Autobots and Decepticons, planet Cybertron is about to fall. Thanks to the great Bumblebee, a portal has been created between Earth and Cybertron through which Optimus Prime (the leader of the autobots) intends to transfer all surviving autobots to Earth. But there seems to be a problem. Inter-Galactic travel between planets is not cheap. For each group to pass through the portal, a certain amount of energon units are required as fuel which can be purchased from the Galactic Market using Cybertronian currency. Unfortunately, Optimus Prime is running short on Cybertronian money at the moment and so wants to minimize the total cost of travel. He wants to divide the autobots in groups.</p>
+
+<p>After precise calculation by Brain(an autobot scholar), it was found that, the number of energon units required for each group to pass through the portal is</p>
+
+<p>                         (D+F) * X<sup>2</sup> + L</p>
+
+<p>where, D is the diameter of the portal in galactic unit, E denotes the electromagnetic field strength, L is total length in galactic unit and X is the number of autobots in the group.</p>
+
+<p>As you can see, traveling between the planets can be quite expensive. However, there is a little bit of relief – due to being mechanical beings, each autobot posses an Eternal Cube by birth.</p>
+
+<p>An Eternal Cube is an object that can be used to generate K energon units. So, the autobots have decided to use up their Eternal Cubes to reduce the amount of energon units that require buying.</p>
+
+<p>Now, Optimus Prime wants to know the maximum number of autobots that he can put in one group such as to minimize the total energon units required for the group to travel. Since, you are a computer programmer and also Prime’s best friend, Optimus reached you for help.</p>
+
+<p>Write a program that will solve the task.</p>
+
+<p>Note: It is guaranteed - the value of D, F, L and K satisfy the fact that the number of autobots (X) is a positive integer and the total energon units required for each group is always a non-negative real number.</p>
+</div>
+
+			<h4>Input</h4>
+			<div><p>The first line of input will contain a single integer T (1 ≤ T ≤ 10<sup>5</sup>) denoting the number of test cases, then T lines of input follow. Each of the next T lines will contain Four space separated integers D, F (1 ≤ D + F ≤ 10<sup>6</sup>), L (1 ≤ L ≤ 10<sup>18</sup>) and K (1 ≤ K ≤ 2 * 10<sup>12</sup>).</p>
+</div>
+
+			<h4>Output</h4>
+			<div><p>Print T lines of output. In each line, print a single integer X denoting the maximum number of autobots in each group such as to minimize the total energon units required for the group to travel through the portal.</p>
+</div>
+
+			
+				<h4>Samples</h4>
+				<div class="table-scrollable table-scrollable-borderless">
+					<table class="table table-light">
+						<thead>
+							<tr>
+								<th style="width: 50%;">Input</th>
+								<th style="width: 50%;">Output</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+								<tr>
+									<td class="pre">2
+2 3 10 10
+4 1 20 30</td>
+									<td class="pre">1
+3</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<br>
+			
+
+			<div class="small"></div>
+		</div>
+	</div>
+
+				</div>
+			</div>
+		</div>
+		<footer>
+			&copy; 2018 Toph | <a target="_blank" href="https://furqansoftware.com">Furqan Software</a>
+		</footer>
+	</body>
+</html>

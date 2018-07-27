@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Simple | EWU Individual Programming Contest 2018 | Toph</title>
+		<style>
+			html,body{
+				height: 100%;
+				margin: 0;
+			}
+
+			body{
+				background: #eff3f8;
+			}
+
+			.container{
+				min-height: 100%;
+				margin-bottom: -35px;
+			}
+
+			.container:after{
+				content: "";
+				display: block;
+			}
+
+			.inner{
+				width: 850px;
+				margin:0 auto;
+				padding-top: 21.5px;
+				margin-bottom: 20px;
+			}
+
+			header{
+				display: inline-block;
+				width: 100%;
+				margin-bottom: 15px;
+			}
+
+			header .left{
+				color: #555;
+				float: left;
+				font-size: 22px;
+				font-weight: 400;
+				font-family: 'Helvetica', sans-serif;
+				margin-top: 5px;
+			}
+
+			header .right{
+				float: right;
+			}
+
+			header .right .logo{
+				height: 32px;
+			}
+
+			.portlet-like{
+				background: #fff;
+				padding: 20px;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				-ms-border-radius: 4px;
+				-o-border-radius: 4px;
+				border-radius: 4px;
+				color: #333;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 1em;
+				line-height: 1.6em;
+			}
+
+			.portlet-like h2{
+				font-size: 30px;
+				font-weight: 400;
+				margin-bottom: 10px;
+			}
+
+			.portlet-like p{
+				margin: 0 0 20px 0;
+			}
+
+			.portlet-like code {
+				padding: 10px;
+				font-size: 15px;
+				color: black;
+				text-shadow: 0 1px white;
+				background-color: #fff;
+				border: 1px solid #f1f4f7;
+				display: block;
+				border-radius: 2px;
+				line-height: 1.5;
+				hyphens: none;
+				font-family: 'Ubuntu Mono', monospace;
+				word-spacing: normal;
+				word-break: normal;
+				word-wrap: normal;
+				margin-bottom: 5px;
+				tab-size: 4;
+			}
+
+			.portlet-like small,.portlet-like .small {
+				font-size: 85%;
+			}
+
+			.portlet-like h4 {
+				font-size: 18px;
+				font-weight: 400;
+			}
+
+			.portlet-like .table-scrollable {
+				width: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				margin: 10px 0 !important;
+			}
+
+			.portlet-like .table-scrollable > .table {
+				width: 100% !important;
+				margin: 0 !important;
+				margin-bottom: 0;
+				background-color: #fff;
+			}
+
+			.portlet-like .table th{
+				text-align: left;
+				border-bottom: 1px solid #F2F5F8;
+				font-size: 13px;
+			}
+
+			.portlet-like .table.table-light>tbody>tr>td.pre {
+				font-size: 1.1em;
+			}
+
+			.portlet-like .pre,
+			.portlet-like .table.table-light>tbody>tr>td.pre,
+			.portlet-like code,
+			.portlet-like code[class*=language-],
+			.portlet-like pre,
+			.portlet-like pre[class*=language-] {
+				font-family: monospace;
+				white-space: pre;
+			}
+
+			.portlet-like p img {
+				display: block;
+				margin: 0 auto;
+			}
+
+			footer{
+				width: 100%;
+				color: #555;
+				text-align: center;
+				font-family: 'Helvetica', sans-serif;
+				font-size: 13px;
+				font-weight: 300;
+			}
+
+			footer a{
+				text-decoration: none;
+				color: #337ab7;
+			}
+
+			.container:after, footer{
+				height: 35px;
+			}
+
+			@media screen and (max-width: 991px) {
+				.inner{
+					width: 80%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="inner">
+				<header>
+					<div class="left">
+						EWU Individual Programming Contest 2018
+					</div>
+					<div class="right">
+						<a target="_blank" href="https://toph.co">
+							<img class="logo" src="data:image/png;base64,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" alt="Toph Logo"/>
+						</a>
+					</div>
+				</header>
+				<div class="portlet-like">
+					
+	<div class="portlet light problem-statement-portlet">
+		<div class="portlet-body">
+			
+			
+
+			<h2 style="margin-top: 0;">Simple</h2>
+			<div>
+				<span title="CPU: 1s, Memory: 256 MB, Source: 256 kB">Limits: 1s, 256 MB</span>
+			</div>
+			<br>
+
+			<div><p>Because all the problems are so hard these days, this is a very simple problem.  Suppose you are given co-ordinates of two points <em><strong>A &amp; B</strong></em> in 2D plane, an angle <em><strong>M</strong></em> and a stick of length <em><strong>L</strong></em>.  One end of the stick is in point <em><strong>B</strong></em> and it creates <em><strong>M</strong></em> degree angle with the line <em><strong>AB</strong></em> in anti clockwise direction. It means that if one end of the stick is point <em><strong>B</strong></em> and another end is point <em><strong>C</strong></em> then angle <em><strong>B</strong></em> is equal to <em><strong>M</strong></em> and Length of <em><strong>BC</strong></em> is equal to <em><strong>L</strong></em>  . You have to tell the co-ordinates of the other end point of the stick, that is the co-ordinates of point <em><strong>C</strong></em> .</p>
+</div>
+
+			<h4>Input</h4>
+			<div><p>First line will contains <em><strong>T</strong></em>, the number of test cases  .
+Then for each of case, there will be line containing 6 integers  <em><strong>Ax, Ay, Bx, By, M and L</strong></em> .</p>
+
+<p><em><strong>1&lt;=T&lt;=1000</strong></em></p>
+
+<p><em><strong>0&lt;=Ax,Ay,Bx,By&lt;=10000</strong></em></p>
+
+<p><em><strong>0&lt;=M&lt;=180</strong></em></p>
+
+<p><em><strong>1&lt;=L&lt;=10000</strong></em></p>
+
+<p><em><strong>Ax&lt;=Bx</strong></em></p>
+
+<p><em><strong>Ay&lt;=By</strong></em></p>
+</div>
+
+			<h4>Output</h4>
+			<div><p>For each case, print two numbers <em><strong>X</strong></em> and <em><strong>Y</strong></em>  , the co-ordinates of the other end point of the stick rounded to the closest integer number in a line. See sample test case for better understanding.</p>
+</div>
+
+			
+				<h4>Samples</h4>
+				<div class="table-scrollable table-scrollable-borderless">
+					<table class="table table-light">
+						<thead>
+							<tr>
+								<th style="width: 50%;">Input</th>
+								<th style="width: 50%;">Output</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+								<tr>
+									<td class="pre">3
+0 0 1 1 45 1
+0 0 0 5 90 5
+1 2 5 2 180 3</td>
+									<td class="pre">1 0
+5 5
+8 2</td>
+								</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<br>
+			
+
+			<div class="small"><p><img src="data:;base64,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" alt=""/>
+The figure is given for test case 1.</p>
+</div>
+		</div>
+	</div>
+
+				</div>
+			</div>
+		</div>
+		<footer>
+			&copy; 2018 Toph | <a target="_blank" href="https://furqansoftware.com">Furqan Software</a>
+		</footer>
+	</body>
+</html>

@@ -1,1 +1,1 @@
-"579 - Clock Hands.exe"<in.txt>out.txt
+"417 - Word Index.exe"<in.txt>out.txt
