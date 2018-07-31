@@ -2,6 +2,73 @@
 #define SIZE 100
 using namespace std;
 
+int sysResourceA;
+int sysResourceB;
+int sysResourceC;
+int sysMemorySize;
+
+class Process{
+private:
+    int processID;
+    string processName;
+    string processStatus;
+    int processSize;
+    int hasIOoperation; // 1 means yes, 0 means no
+    int burst;
+    int arrivalTime;
+    int priority;
+    static int processCounter;
+public:
+    Process(){}
+    /*
+    Process(string processName, int burst, int arrivalTime, int priority){
+        this->processID = ++(this->processCounter);
+        this->processName = processName;
+        this->processStatus = "new";
+        this->burst = burst;
+        this->arrivalTime = arrivalTime;
+        this->priority = priority;
+    }
+    */
+    void setProcess(string processName, int processSize, int hasIOoperation, int burst, int arrivalTime, int priority){
+        this->processID = ++(this->processCounter);
+        this->processName = processName;
+        this->processStatus = "new";
+        this->processSize = processSize;
+        this->hasIOoperation = hasIOoperation;
+        this->burst = burst;
+        this->arrivalTime = arrivalTime;
+        this->priority = priority;
+    }
+    void setProcessID(int processID){this->processID = processID;}
+    void setProcessName(string processName){this->processName = processName;}
+    void setProcessStatus(string processStatus){this->processStatus = processStatus;}
+    void setProcessSize(int processSize){this->processSize = processSize;}
+    void setHasIOoperation(int hasIOoperation){this->hasIOoperation = hasIOoperation;}
+    void setBurst(int burst){this->burst = burst;}
+    void setArrivalTime(int arrivalTime){this->arrivalTime = arrivalTime;}
+    void setPriority(int priority){this->priority = priority;}
+    int getProcessID(){ return this->processID;}
+    string getProcessName(){ return this->processName;}
+    string getProcessStatus(){return this->processStatus;}
+    int getProcessSize(){ return this->processSize;}
+    int getHasIOoperation(){ return this->hasIOoperation;}
+    int getBurst(){ return this->burst;}
+    int getArrivalTime(){ return this->arrivalTime;}
+    int getPriority(){ return this->priority;}
+};
+
+int Process::processCounter = 0;
+
+Process JOB_QUEUE[SIZE];
+Process READY_QUEUE[SIZE];
+Process DEVICE_QUEUE[SIZE];
+
+int GANTT_CHART[1000];
+
+int job_queue_front, job_queue_rear = 0;
+int ready_queue_front, ready_queue_rear = 0;
+int device_queue_front, device_queue_rear = 0;
 
 void initGanttChart(){
     for(int i=0; i<1000; i++)
@@ -55,9 +122,11 @@ void showReadyQueue(){
         << setw(10) << READY_QUEUE[i].getProcessSize()
         << setw(10) << READY_QUEUE[i].getHasIOoperation() << endl;    }
 
-}void showDeviceQueue(){
+}
+
+void showDeviceQueue(){
     cout.setf(ios::left, ios::adjustfield);
-    cout << "DEVICE Queue" << endl;
+    cout << "Device Queue" << endl;
     cout << "---------" << endl;
     cout << setw(10) << "ID" << setw(10) << "Name" << setw(10) << "Burst" << setw(10) << "Arrival" << setw(10) << "Priority"
          << setw(10) << "Size" << setw(10) << "hasIO?" << endl;
@@ -69,78 +138,46 @@ void showReadyQueue(){
         << setw(10) << DEVICE_QUEUE[i].getHasIOoperation() << endl;    }
 
 }
-
+void bankers_algorithm(){
+    showDeviceQueue();
+    cout << "Enter into bankers algorithm" << endl;
+    cout << "Read Allocation and Max matrix for each process in device queue" << endl;
+    cout << "then determine system state" << endl;
+}
 void readyProcess(){
-    cout << "Transferring Processes from Job Queue to Ready Queue." << endl;
-    Process temp[job_queue_rear];
-    int tempCounter = 0;
+    cout << "Transferring Processes from Job Queue to Ready/Device Queue." << endl;
+    int j = 0, k = 0;
     for(int i = 0; i<job_queue_rear; i++){
-        if(JOB_QUEUE[i].getHasIOoperation() == 1){
-                cout << "Sent " << i << " TO DEVICE QUEUE" << endl;
-           // cout << "Sent " << i << " TO device" << endl;
-            DEVICE_QUEUE[device_queue_rear].setProcessID(JOB_QUEUE[i].getProcessID());
-            DEVICE_QUEUE[device_queue_rear].setProcessName(JOB_QUEUE[i].getProcessName());
-            DEVICE_QUEUE[device_queue_rear].setProcessStatus("waiting");
-            DEVICE_QUEUE[device_queue_rear].setBurst(JOB_QUEUE[i].getBurst());
-            DEVICE_QUEUE[device_queue_rear].setArrivalTime(JOB_QUEUE[i].getArrivalTime());
-            DEVICE_QUEUE[device_queue_rear].setPriority(JOB_QUEUE[i].getPriority());
-            DEVICE_QUEUE[device_queue_rear].setHasIOoperation(JOB_QUEUE[i].getHasIOoperation());
-            DEVICE_QUEUE[device_queue_rear].setProcessSize(JOB_QUEUE[i].getProcessSize());
-            device_queue_rear++;
-        }else{
-            if(sysRemainingMemorySize >= JOB_QUEUE[i].getProcessSize()){
-            cout << "Sent " << i << " TO READY QUEUE" << endl;
-                READY_QUEUE[ready_queue_rear].setProcessID(JOB_QUEUE[i].getProcessID());
-                READY_QUEUE[ready_queue_rear].setProcessName(JOB_QUEUE[i].getProcessName());
-                READY_QUEUE[ready_queue_rear].setProcessStatus("ready");
-                READY_QUEUE[ready_queue_rear].setBurst(JOB_QUEUE[i].getBurst());
-                READY_QUEUE[ready_queue_rear].setArrivalTime(JOB_QUEUE[i].getArrivalTime());
-                READY_QUEUE[ready_queue_rear].setPriority(JOB_QUEUE[i].getPriority());
-                READY_QUEUE[ready_queue_rear].setHasIOoperation(JOB_QUEUE[i].getHasIOoperation());
-                READY_QUEUE[ready_queue_rear].setProcessSize(JOB_QUEUE[i].getProcessSize());
-                ready_queue_rear++;
-                sysRemainingMemorySize -= JOB_QUEUE[i].getProcessSize();
-                //JOB_QUEUE[i] = NULL;
-            }else{
-                cout << "Didn't Send " << i << endl;
-                temp[tempCounter].setProcessID(JOB_QUEUE[i].getProcessID());
-                temp[tempCounter].setProcessName(JOB_QUEUE[i].getProcessName());
-                temp[tempCounter].setProcessStatus("new");
-                temp[tempCounter].setBurst(JOB_QUEUE[i].getBurst());
-                temp[tempCounter].setArrivalTime(JOB_QUEUE[i].getArrivalTime());
-                temp[tempCounter].setPriority(JOB_QUEUE[i].getPriority());
-                temp[tempCounter].setHasIOoperation(JOB_QUEUE[i].getHasIOoperation());
-                temp[tempCounter].setProcessSize(JOB_QUEUE[i].getProcessSize());
-                tempCounter++;
-            }
+        Process P = JOB_QUEUE[i];
+        if(P.getHasIOoperation() == 1){
+            DEVICE_QUEUE[j].setProcessID(P.getProcessID());
+            DEVICE_QUEUE[j].setProcessName(P.getProcessName());
+            DEVICE_QUEUE[j].setProcessSize(P.getProcessSize());
+            DEVICE_QUEUE[j].setHasIOoperation(P.getHasIOoperation());
+            DEVICE_QUEUE[j].setProcessStatus("waiting");
+            DEVICE_QUEUE[j].setBurst(P.getBurst());
+            DEVICE_QUEUE[j].setArrivalTime(P.getArrivalTime());
+            DEVICE_QUEUE[j].setPriority(P.getPriority());
+            j++;
         }
-        /*
-        check whether hasIo == 1 or nnot
-        if yes,
-            place the process into device queue;
-        else
-            check whether memory is available
-            if yes
-                then place the process into ready queue
-            else
-                continue;
-*/
-
+        else{
+            READY_QUEUE[k].setProcessID(P.getProcessID());
+            READY_QUEUE[k].setProcessName(P.getProcessName());
+            READY_QUEUE[k].setProcessSize(P.getProcessSize());
+            READY_QUEUE[k].setHasIOoperation(P.getHasIOoperation());
+            READY_QUEUE[k].setProcessStatus("ready");
+            READY_QUEUE[k].setBurst(P.getBurst());
+            READY_QUEUE[k].setArrivalTime(P.getArrivalTime());
+            READY_QUEUE[k].setPriority(P.getPriority());
+            k++;
+        }
     }
-    //ready_queue_rear = job_queue_rear-device_queue_rear;
+    ready_queue_rear = k;
+    device_queue_rear = j;
     job_queue_rear = 0;
-    for(int i=0;i<tempCounter;i++){
-        JOB_QUEUE[job_queue_rear].setProcessID(temp[i].getProcessID());
-        JOB_QUEUE[job_queue_rear].setProcessName(temp[i].getProcessName());
-        JOB_QUEUE[job_queue_rear].setProcessStatus("new");
-        JOB_QUEUE[job_queue_rear].setBurst(temp[i].getBurst());
-        JOB_QUEUE[job_queue_rear].setArrivalTime(temp[i].getArrivalTime());
-        JOB_QUEUE[job_queue_rear].setPriority(temp[i].getPriority());
-        JOB_QUEUE[job_queue_rear].setHasIOoperation(temp[i].getHasIOoperation());
-        JOB_QUEUE[job_queue_rear].setProcessSize(temp[i].getProcessSize());
-        job_queue_rear++;
-    }
     cout << "Transfer Completed." << endl;
+    if(device_queue_rear > 0)
+        bankers_algorithm();
 }
 
 int compare(const void *a, const void *b){
@@ -384,11 +421,8 @@ void sysConfig(){
     cin >> sysResourceC;
     cout << "Enter memory size: ";
     cin >> sysMemorySize;
-    sysRemainingMemorySize = sysMemorySize;
 }
-void showAvailAbleMemory(){
-    cout << "Available memory: " << sysRemainingMemorySize << endl;
-}
+
 int main(){
     string command;
     do{
@@ -409,6 +443,7 @@ int main(){
         else if(command=="show-ready-queue"){
             showReadyQueue();
         }
+
         else if(command=="show-device-queue"){
             showDeviceQueue();
         }
@@ -417,9 +452,6 @@ int main(){
         }
         else if(command=="reexecute-process"){
             reexecuteProcess();
-        }
-        else if(command=="show-available-memory"){
-            showAvailAbleMemory();
         }
         else if(command=="exit"){
             cout << "Thank You." << endl;

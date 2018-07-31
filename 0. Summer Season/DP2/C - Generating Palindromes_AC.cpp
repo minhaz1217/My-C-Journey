@@ -43,7 +43,5 @@ int main(){
 
     //cout << "Case " << caseCounter++ << ": " <<counter << endl;
     cout << counter << endl;
-
-
     return 0;
 }
