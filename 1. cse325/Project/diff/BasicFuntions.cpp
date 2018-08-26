@@ -75,6 +75,10 @@ int compareBurstTime(Process p1, Process p2){
 int compareBurstTime1(pair<Process,int> p1, pair<Process,int> p2){
     return (p1.first.getBurst() < p2.first.getBurst());
 }
+int comparePriority1(pair<Process,int> p1, pair<Process,int> p2){
+    return (p1.first.getPriority() < p2.first.getPriority());
+}
+
 int comparePriority(Process p1, Process p2){
     //return 1;
     return (p1.getPriority() < p2.getPriority());
@@ -122,20 +126,41 @@ void showAllQueue(){
     showReadyQueue();
     showDeviceQueue();
 }
+void showSystemInfo(){
+    cout << "-----SYSTEM INFO-----" <<  endl;
+    cout << "Sytem Memory Size: " << sysMemorySize << endl;
+    cout << "Sytem Frame Size: " << sysFrameSize<< endl;
+    cout << "System Resources" << endl;
+    for(int i=0;i<sysResource.size();i++){
+        cout << "Resource " << i+1 << ": " << sysResource[i] << endl;
+    }
+    cout << "Internal Fragmentation: " << sysInternalFragmentation << endl;
+}
 void sysConfig(){
     int a;
     cout << "Enter number of instances of A: ";
     cin >> a;
-    resource.push_back(a);
+    sysResource.push_back(a);
     cout << "Enter number of instances of B: ";
     cin >> a;
-    resource.push_back(a);
+    sysResource.push_back(a);
     cout << "Enter number of instances of C: ";
     cin >> a;
-    resource.push_back(a);
+    sysResource.push_back(a);
+
     cout << "Enter memory size: ";
     cin >> sysMemorySize;
+
+    cout << "Enter block size: " ;
+    cin >> sysFrameSize;
+
+    while( sysMemorySize%sysFrameSize != 0 ){
+        cout << "!!!Block size must be a divisible of total memory.!!!\nEnter block size: " ;
+        cin >> sysFrameSize;
+    }
+    blocks.assign(sysFrameSize, 0);
     sysRemainingMemorySize = sysMemorySize;
+    sysRemainingFrame = sysMemorySize/ sysFrameSize;
 }
 
 /* once user is ready, shifting process from new -> ready state */
@@ -146,8 +171,12 @@ void readyProcess(){
         if(jobQueue[i].getHasIOoperation()){
             deviceQueue.push_back(jobQueue[i]);
         }else{
-            if(jobQueue[i].getProcessSize() <= sysRemainingMemorySize){
+
+            if(ceil(jobQueue[i].getProcessSize()/sysFrameSize) <= sysRemainingFrame){
                 readyQueue.push_back(jobQueue[i]);
+                sysRemainingFrame -= ceil(jobQueue[i].getProcessSize()/sysFrameSize);
+                sysInternalFragmentation += ceil(jobQueue[i].getProcessSize()/sysFrameSize)- jobQueue[i].getProcessSize();
+
                 sysRemainingMemorySize -= jobQueue[i].getProcessSize();
             }else{
                 cout << "Couldn't assign " << jobQueue[i].getProcessName() << " because of insufficent memory" << endl;

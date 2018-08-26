@@ -1,7 +1,3 @@
-vector<int>resource;
-int sysMemorySize;
-
-int sysRemainingMemorySize;
 class Process{
 private:
     int processID;
@@ -56,10 +52,3 @@ public:
 };
 
 
-/* for incrementing process id automatically */
-int Process::processCounter = 0;
-
-/* for producing gantt chart */
-int GANTT_CHART[1000];
-
-deque<Process> readyQueue, jobQueue, deviceQueue;
