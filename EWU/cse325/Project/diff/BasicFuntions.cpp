@@ -134,10 +134,12 @@ void showSystemInfo(){
     for(int i=0;i<sysResource.size();i++){
         cout << "Resource " << i+1 << ": " << sysResource[i] << endl;
     }
-    cout << "Internal Fragmentation: " << sysInternalFragmentation << endl;
+    cout << "System used memory: " << sysMemorySize - sysRemainingFrame << endl;
+    cout << "System remaining memory: " << sysRemainingFrame << endl;
 }
 void sysConfig(){
     int a;
+    sysResource.clear();
     cout << "Enter number of instances of A: ";
     cin >> a;
     sysResource.push_back(a);
@@ -155,7 +157,7 @@ void sysConfig(){
     cin >> sysFrameSize;
 
     while( sysMemorySize%sysFrameSize != 0 ){
-        cout << "!!!Block size must be a divisible of total memory.!!!\nEnter block size: " ;
+        cout << "!!!Memory size must be a divisible of block size.!!!\nEnter block size: " ;
         cin >> sysFrameSize;
     }
     blocks.assign(sysFrameSize, 0);
@@ -188,5 +190,18 @@ void readyProcess(){
     jobQueue = temp;
     cout << "Transfer Completed." << endl;
 }
-
+int getArrivalTimeByID(int a){
+    for(int i=0;i<readyQueue.size();i++){
+        if(readyQueue[i].getProcessID() == a){
+            return readyQueue[i].getArrivalTime();
+        }
+    }
+}
+int getBurstTimeByID(int a){
+    for(int i=0;i<readyQueue.size();i++){
+        if(readyQueue[i].getProcessID() == a){
+            return readyQueue[i].getBurst();
+        }
+    }
+}
 

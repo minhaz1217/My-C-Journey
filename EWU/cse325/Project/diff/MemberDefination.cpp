@@ -15,6 +15,8 @@ int sysRemainingFrame;
 
 int sysInternalFragmentation = 0;
 
+vector<int>allocationResource,maxResource, needResource;
+
 //scheduling algorithm
 void fcfs();
 void sjf();
