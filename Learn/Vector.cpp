@@ -40,11 +40,14 @@ int main(){
       int myarray [] = { 501,502,503 };
       myvector.insert (myvector.begin(), myarray, myarray+3);
     */
+
+    /*
+    //testing iterator
     for(it1=vecInsert.begin();it1!=vecInsert.end();it1++){
         cout << *it1 << " ";
     }
     cout << endl;
-
+    */
 
 
 
@@ -67,9 +70,9 @@ int main(){
     count(&@first, &@last, value what to count)
     find(&@first, &@last, value what to find)
 
-
-
     */
+    vector<int>vecBack({1,2,3,4});
+    cout << vecBack.back() << endl;
 
 
     //cout << second.begin() << endl;
