@@ -2,6 +2,7 @@
 using std::vector;
 using std::tuple;
 
+//MO's WTIH CLASS
 /*
  * Take out adding\removing logic into separate class.
  * It provides functions to add and remove numbers from

@@ -8,7 +8,16 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 
 int main(){
-
+    int tc,a;
+    cin >> tc;
+    while(tc--){
+        cin >> a;
+        if(a ==2010 || a == 2015 || a == 2016 || a == 2017 || a == 2019){
+            cout << "HOSTED" << endl;
+        }else{
+            cout << "NOT HOSTED" << endl;
+        }
+    }
 
     return 0;
 }

@@ -7,7 +7,7 @@ using namespace std;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 
-
+//SIEVE
 #define SIEVE 10000
 bitset<SIEVE +5>mark;
 vector<int>prime;
@@ -22,13 +22,15 @@ void sieve(){
         }
     }
 }
-
-
 int main(){
     sieve();
     cc(prime.size())
     for(int i=0;i<prime.size();i++){
         msg(i,prime[i])
     }
+/*
+1227 : 9967
+1228 : 9973
+*/
     return 0;
 }

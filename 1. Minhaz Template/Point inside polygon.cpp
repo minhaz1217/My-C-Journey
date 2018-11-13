@@ -1,3 +1,9 @@
+
+#include <iostream>
+using namespace std;
+
+
+//point inside polygon big
 /*
 Time Complexity: O(n)
 */
@@ -5,9 +11,6 @@ Time Complexity: O(n)
 // A C++ program to check if a given point lies inside a given polygon
 // Refer https://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/
 // for explanation of functions onSegment(), orientation() and doIntersect()
-#include <iostream>
-using namespace std;
-
 // Define Infinite (Using INT_MAX caused overflow problems)
 #define INF 10000
 
@@ -16,7 +19,6 @@ struct Point
 	int x;
 	int y;
 };
-
 // Given three colinear points p, q, r, the function checks if
 // point q lies on line segment 'pr'
 bool onSegment(Point p, Point q, Point r)
@@ -132,6 +134,13 @@ int main()
 	p = {-1,10};
 	n = sizeof(polygon3)/sizeof(polygon3[0]);
 	isInside(polygon3, n, p)? cout << "Yes \n": cout << "No \n";
-
+/*
+No
+Yes
+Yes
+Yes
+No
+No
+*/
 	return 0;
 }

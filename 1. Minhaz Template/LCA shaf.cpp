@@ -1,7 +1,8 @@
-//LCA using sparse table
-//Complexity: O(NlgN,lgN)
 #include<bits/stdc++.h>
 using namespace std;
+
+//LCA using sparse table
+//Complexity: O(NlgN,lgN)
 #define mx 100002
 int L[mx]; //লেভেল
 int P[mx][22]; //স্পার্স টেবিল
@@ -60,7 +61,6 @@ void lca_init(int N)
              if (P[i][j - 1] != -1)
                  P[i][j] = P[P[i][j - 1]][j - 1];
  }
-
 int main(void) {
 	g[0].push_back(1);
 	g[0].push_back(2);
@@ -69,5 +69,8 @@ int main(void) {
 	dfs(0, 0, 0);
 	lca_init(5);
 	printf( "%d\n", lca_query(5,3,4) );
+	/*
+	2
+	*/
 	return 0;
 }

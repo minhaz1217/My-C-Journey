@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int N, Q;
 
+//Mo's Hackerrank
+int N, Q;
 // Variables, that hold current "state" of computation
 long long current_answer;
 long long cnt[100];

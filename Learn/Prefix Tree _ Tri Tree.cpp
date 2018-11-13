@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+// TRIE
 class nod{
 public:
     nod *child[26];

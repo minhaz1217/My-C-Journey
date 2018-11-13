@@ -1,11 +1,11 @@
-// C++ implementation to find longest increasing subsequence
-// in O(n Log n) time.
+
 #include <bits/stdc++.h>
 using namespace std;
 
+// C++ implementation to find longest increasing subsequence
+// in O(n Log n) time.
 // Binary search
-int GetCeilIndex(vector<int>arr, vector<int> &T, int l, int r,
-                 int key)
+int GetCeilIndex(vector<int>arr, vector<int> &T, int l, int r,int key)
 {
     while (r - l > 1)
     {
@@ -64,25 +64,30 @@ int LongestIncreasingSubsequence(vector<int> arr, int n)
 
 int main()
 {
-	vector<int> v;
+    vector<int> v;
 
-	v.push_back(2);
-	v.push_back(5);
-	v.push_back(3);
-	v.push_back(7);
-	v.push_back(11);
-	v.push_back(8);
-	v.push_back(10);
-	v.push_back(13);
-	v.push_back(6);
-	/*
-	long long int n,a;
-	cin >> n;
-	while(n--){
+    v.push_back(2);
+    v.push_back(5);
+    v.push_back(3);
+    v.push_back(7);
+    v.push_back(11);
+    v.push_back(8);
+    v.push_back(10);
+    v.push_back(13);
+    v.push_back(6);
+    /*
+    long long int n,a;
+    cin >> n;
+    while(n--){
         cin >> a;
         v.push_back(a);
-	}
-	*/
-	cout << "Length of Longest Increasing Subsequence is " << LongestIncreasingSubsequence(v,v.size()) << 'n';
-return 0;
+    }
+    */
+    cout << "Length of Longest Increasing Subsequence is " << LongestIncreasingSubsequence(v,v.size()) << 'n';
+/*
+LIS of given input
+13 10 8 7 3 2
+Length of Longest Increasing Subsequence is 6n
+*/
+    return 0;
 }

@@ -7,8 +7,7 @@ using namespace std;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 
-
-
+//DISJOINT SET
 class disjoint_set{
     vector<int>p,rt;
 public:
@@ -30,7 +29,6 @@ public:
     bool isSameSet(int x, int y){
         return (findSet(x) == findSet(y));
     }
-
     void unionSet(int x, int y){
         if(!isSameSet(x,y)){
             int a,b;
@@ -48,12 +46,14 @@ public:
     }
 
 };
-
 int main(){
     disjoint_set dj(5);
     msg("CHECK 2,3", dj.isSameSet(2,3));
     dj.unionSet(2,3);
     msg("CHECK 2,3", dj.isSameSet(2,3));
-
+/*
+CHECK 2,3 : 0
+CHECK 2,3 : 1
+*/
     return 0;
 }

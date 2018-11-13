@@ -1,3 +1,7 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
 /*
 Name: Mo's Algorithm
 Time: O((N + Q) * sqrt(N) * F)
@@ -9,13 +13,8 @@ Conditions:
 2. It cannot work for problems where we have update operations also mixed with sum queries.
 3. MO’s algorithm can only be used for query problems where a query can be computed from results of the previous query. One more such example is maximum or minimum.
 */
-
-
-
 // Program to compute sum of ranges for different range
 // queries
-#include <bits/stdc++.h>
-using namespace std;
 
 // Variable to represent block size. This is made global
 // so compare() of sort can use it.
@@ -105,5 +104,11 @@ int main()
 	Query q[] = {{0, 4}, {1, 3}, {2, 4}};
 	int m = sizeof(q)/sizeof(q[0]);
 	queryResults(a, n, q, m);
+/*
+Sum of [1, 3] is 4
+Sum of [0, 4] is 8
+Sum of [2, 4] is 6
+
+*/
 	return 0;
 }

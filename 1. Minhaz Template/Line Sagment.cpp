@@ -1,4 +1,3 @@
-// A C++ program to check if two given line segments intersect
 #include <iostream>
 using namespace std;
 
@@ -7,8 +6,8 @@ using namespace std;
 #define msg(a,b) cout << a << " : " << b << endl;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
-
-
+// line segment
+// A C++ program to check if two given line segments intersect
 struct Point
 {
 	int x;
@@ -111,5 +110,20 @@ int main()
 	outputCheck(doIntersect(makeLine(0,0,5,0),makeLine(8,0,10,0)));
 	outputCheck(doIntersect(makeLine(0,0,5,0),makeLine(10,5,10,-5)));
 
+/*
+2 : 2 : 1 : 1
+No
+2 : 1 : 1 : 2
+Yes
+0 : 0 : 0 : 0
+No
+0 : 0 : 0 : 0
+Yes
+0 : 0 : 0 : 0
+NO
+2 : 1 : 1 : 1
+NO
+
+*/
 	return 0;
 }

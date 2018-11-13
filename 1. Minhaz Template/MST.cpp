@@ -7,6 +7,7 @@ using namespace std;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 
+//msg kruskal
 vector<pair< long long int, pair<long long int, long long int> > >edgelist;
 
 class disjoint_set{
@@ -67,8 +68,6 @@ long long int kruskal(int n){
     return mst_cost;
 
 }
-
-
 int main(){
     int m,u,v,w;
     edgelist.push_back(make_pair(1, make_pair(1,2)));
@@ -77,8 +76,8 @@ int main(){
     edgelist.push_back(make_pair(1, make_pair(1,4)));
     cout << kruskal(5) << endl;
     //output 3
-
-
-
-    return 0;
+/*
+3
+*/
+   return 0;
 }
