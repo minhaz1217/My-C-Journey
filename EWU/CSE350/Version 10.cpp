@@ -15,8 +15,17 @@ char fileName[] = "CSE350.txt";
 int generatedBitRange = SYSTEM_BITS;
 vector<int>loadedDataList;
 int fileLoaded, generatedText ;
+int color_error = 252;
+int color_success = 250;
+int color_normal = 240;
+int color_info = 249;
+int color_warning = 245;
 
-
+void changeConsoleColor(int color){
+    HANDLE consoleHandler = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(consoleHandler, color);
+    //SetConsoleTextAttribute(consoleHandler, 0 | 1 | BACKGROUND_RED);
+}
 void generateRandomBitsInFile(){
     int n;
     ofstream myFile;
@@ -82,6 +91,9 @@ void simulate(){
     cin >> windowSize;
     cout << "Enter Frame Size: ";
     cin >> frameSize;
+    changeConsoleColor(color_info);
+    cout << endl<< endl << "------Simulation Starting------" << endl;
+    cout << "With frame size: " << frameSize << " Window Size: " << windowSize << endl << endl;
     datalistIndex = 1;
     vector<vector<int> >datalist;
     vector<int>tempdata,receivedData;
@@ -107,12 +119,15 @@ void simulate(){
     while(1){
 
         if(senderIndex == datalist.size()){
+            changeConsoleColor(color_success);
             cout << ">> EOT" << endl;
+            changeConsoleColor(color_normal);
             break;
         }
 
         qSize = myQ.size();
         //sender interface
+        changeConsoleColor(color_info);
         cout << "Sender Sending: \t";
         //msg("SEND NEXT", sendNext)
         /// each time sending windsize = windowSize amount of data in myQ
@@ -153,11 +168,14 @@ void simulate(){
         for(int i=0;i<maxReceive;i++){
             success = ( ( (rand()%100) < 75 )? 1: 0); // 75% chance of success
             if(i>0){
+                changeConsoleColor(color_normal);
                 cout << ", ";
             }
             if(success){
                 if(rejectFlag == 0){
+                    changeConsoleColor(color_success);
                     cout << tempDataStream.front().second << " ";
+                    changeConsoleColor(color_normal);
                     receiveCount++;
                     sendNext = myQ.front().second;
                     for(int j=0;j<myQ.front().first.size();j++){
@@ -169,12 +187,18 @@ void simulate(){
 
 
                 }else{
+                    changeConsoleColor(color_warning);
                     cout << tempDataStream.front().second << " ";
+                    changeConsoleColor(color_normal);
                     receiveCount++;
                     fullRejectFlag = 1;
                 }
             }else{
+
+                changeConsoleColor(color_error);
                 cout << tempDataStream.front().second << "x ";
+
+                changeConsoleColor(color_normal);
                 if(rejectFlag == 0){
                     sendNext= myQ.front().second;
                 }
@@ -189,11 +213,17 @@ void simulate(){
             cout << "<< RR" << (sendNext)%windowSize << endl;
             //cout << "Receiver TIMEOUT" << endl;
         }else if(rejectFlag == 1 && fullRejectFlag == 1){
+            changeConsoleColor(color_error);
             cout << "<< Rej" << (sendNext)%windowSize << endl;
+            changeConsoleColor(color_normal);
         }else if(rejectFlag == 1){
+            changeConsoleColor(color_warning);
             cout << "<< RR" << (sendNext)%windowSize << endl;
+            changeConsoleColor(color_normal);
         }else{
+            changeConsoleColor(color_success);
             cout << "<< RR" << (sendNext + 1)%windowSize << endl;
+            changeConsoleColor(color_normal);
             sendNext = (sendNext+1 )%windowSize;
         }
 
@@ -211,11 +241,6 @@ void simulate(){
     cout << "Press any key to continue..." << endl;
     getch();
 }
-void changeConsoleColor(int color){
-    HANDLE consoleHandler = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(consoleHandler, color);
-    //SetConsoleTextAttribute(consoleHandler, 0 | 1 | BACKGROUND_RED);
-}
 int main(){
 
     fileLoaded = 0;
@@ -223,10 +248,10 @@ int main(){
     int choice;
     while(1){
         system("cls");
-        changeConsoleColor(13);
-        cout << "\t\tSimulation of GO BACK N\t\t" << endl;
-        cout << "----------------------------------------------------------" << endl;
-
+        changeConsoleColor(159);
+        cout << "            Simulation of GO BACK N            " << endl;
+        cout << "-----------------------------------------------"<< endl;
+        changeConsoleColor(color_normal);
         cout << "1. Generate New File" << endl;
         cout << "2. Load The File" << endl;
         cout << "3. Simulate" << endl;
@@ -239,7 +264,9 @@ int main(){
         }else if(choice == 2){
             loadFromFile();
         }else if(choice == 4){
+            changeConsoleColor(192);
             cout << "THANK YOU VERY MUCH" << endl;
+            changeConsoleColor(color_normal);
             exit(0);
         }else{
             if(fileLoaded == 0){
