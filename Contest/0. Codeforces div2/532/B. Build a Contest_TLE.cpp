@@ -11,12 +11,13 @@ set<int>st[ 100500];
 int main(){
 
     int n,k,a,m,pnt,j;
-    cin >> n >> m;
-
+    //cin >> n >> m;
+    scanf("%d%d", &n,&m);
     set<int>::iterator it;
     pnt = 0;
     for(int i=0;i<m;i++){
-        cin >> a;
+        scanf("%d", &a);
+        ///cin >> a;
         //msg("VAL", a)
         j = pnt;
 
@@ -30,12 +31,14 @@ int main(){
         }
         st[j].insert(a);
         if(st[j].size() == n){
-            cout << 1;
+            printf("1");
+            //cout << 1;
             pnt++;
         }else{
-            cout << 0;
+            printf("0");
         }
     }
-    cout << endl;
+            printf("\n");
+    //cout << endl;
     return 0;
 }
