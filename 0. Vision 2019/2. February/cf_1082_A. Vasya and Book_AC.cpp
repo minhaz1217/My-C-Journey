@@ -24,12 +24,18 @@ int main(){
     while(tc--){
         cin >> n >> x >> y >> d;
         if( (int)abs(x-y)%d == 0 ){
-            cout << ceil(abs(x-y)/d) << endl;
+            cout << (int)ceil(abs(x-y)/d) << endl;
         }else if( (int)(y-1)%d == 0 || (int)(n-y)%d == 0){
-            a = ceil((x)/d) + ceil((y-1)/d);
+            a = ceil((x-1)/d) + ceil((y-1)/d);
             b = ceil((n-x)/d) + ceil((n-y)/d);
+            if( (int)(y-1)%d == 0 &&  (int)(n-y)%d == 0){
+                cout << (int)ceil(min(a,b)) << endl;
+            }else if((int)(y-1)%d == 0){
+                cout << (int)a << endl;
+            }else{
+                cout << (int)b << endl;
+            }
             //msg(a,b)
-            cout << (int)ceil(min(a,b)) << endl;
         }else{
             cout << -1 << endl;
         }
