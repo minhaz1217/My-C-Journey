@@ -16,14 +16,15 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-long long int bigmod(long long int a, long long int b, long long int m){
-    if(b==0){
+long long int bigmod(long long int b, long long int p, long long int m){
+    // calculates (b^p)%m
+    if(p==0){
         return 1%m;
     }
-    int x = bigmod(a,b/2,m);
+    int x = bigmod(b,p/2,m);
     x = (x*x)%m;
-    if(b%2 == 1){
-        x = (x*a) %m;
+    if(p%2 == 1){
+        x = (x*b) %m;
     }
     return x;
 }
