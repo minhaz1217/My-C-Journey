@@ -25,6 +25,7 @@ vector<int> z_algo(string s) {
 int main(){
     vector<int> A;
     string str = "ABCABCACAB";
+    cin >> str;
     A = z_algo(str);
     for(int i=0;str[i];i++){
         cout << str[i] << " ";

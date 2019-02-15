@@ -37,8 +37,8 @@ int main(){
     msg("LONG_MIN ", LONG_MIN)
     msg("LONG_MAX ", LONG_MAX)
     msg("ULONG_MAX ", ULONG_MAX)
-    msg("LONG_LONG_MAX ", LONG_LONG_MAX)
-    msg("LONG_LONG_MIN ", LONG_LONG_MIN)
+    msg("LLONG_MAX ", LLONG_MAX)
+    msg("ULLONG_MIN ", LLONG_MIN)
 
 
 
