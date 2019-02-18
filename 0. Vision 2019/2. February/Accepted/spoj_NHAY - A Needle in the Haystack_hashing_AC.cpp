@@ -3,9 +3,9 @@ Minhazul Hayat Khan
 minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
-Problem Link:
-Date : 18 / February / 2019
-Comment:
+Problem Link: https://www.spoj.com/problems/NHAY/
+Date : 19 / February / 2019
+Comment: Could've solved it using prefix or z algo, but used this problem to develop the hashing function and understand the hashing algorithm better.
 */
 #include<bits/stdc++.h>
 //#include<iostream>

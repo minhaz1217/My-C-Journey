@@ -4,7 +4,7 @@ minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
 Problem Link: https://www.spoj.com/problems/TEST/
-Date : 18 / February / 2019
+Date : 19 / February / 2019
 Comment: easiest problem
 */
 #include<bits/stdc++.h>
