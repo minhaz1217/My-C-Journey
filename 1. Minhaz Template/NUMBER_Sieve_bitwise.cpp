@@ -4,7 +4,7 @@ minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
 Problem Link:
-Date : 20 / February / 2019
+Date : 21 / February / 2019
 Comment:
 */
 #include<bits/stdc++.h>
@@ -18,31 +18,39 @@ using namespace std;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 
-#define SIEVE 10000400
-bool mark[SIEVE];
+
+#define SIEVE 100000
+int mark[ (SIEVE/32)+2 ];
 vector<int>prime;
-void sieve(){
-    int root = sqrt(SIEVE)+1;
-    for(int i=2;i<root;i++){
-        if(mark[i] == 0){
-            for(int j=i;i*j<SIEVE;j++){
-                mark[i*j] = 1;
+bool CHECK(int N, int pos){
+    return (bool)( N&(1<<pos) );
+}
+int SET(int N, int pos){
+    return N= (N | (1<<pos));
+}
+void bsieve(){
+    int j, root = sqrt(SIEVE)+1;
+    for(int i=3;i<=root;i+=2){
+        if(CHECK(mark[i>>5], i&31) == 0){
+            for(j=i*i;j<=SIEVE;j+=(i<<1)){
+                mark[j>>5] = SET(mark[ j>>5 ] , j&31);
             }
         }
     }
-    for(int i=2;i<SIEVE;i++){
-        if(mark[i] == 0){
+    prime.push_back(2);
+    for(int i=3;i<=SIEVE;i+=2){
+        if(CHECK( mark[i>>5] , i&31)==0){
             prime.push_back(i);
         }
     }
+
 }
+
 int main(){
-    sieve();
-    cc(prime.size())
-    for(int i=0;i<5;i++){
-        cout << prime[i] << " ";
+    bsieve();
+    for(int i=0;i<10;i++){
+        cc(prime[i])
     }
-    cout <<endl;
 
     return 0;
 }

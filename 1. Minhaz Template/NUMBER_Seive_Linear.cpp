@@ -4,7 +4,7 @@ minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
 Problem Link:
-Date : 20 / February / 2019
+Date : 21 / February / 2019
 Comment:
 */
 #include<bits/stdc++.h>
@@ -17,32 +17,24 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-
-#define SIEVE 10000400
-bool mark[SIEVE];
-vector<int>prime;
+const int N = 100000;
+int lp[N+1];
+vector<int> prime;
 void sieve(){
-    int root = sqrt(SIEVE)+1;
-    for(int i=2;i<root;i++){
-        if(mark[i] == 0){
-            for(int j=i;i*j<SIEVE;j++){
-                mark[i*j] = 1;
-            }
+    for (int i=2; i<=N; ++i) {
+        if (lp[i] == 0) {
+            lp[i] = i;
+            prime.push_back (i);
         }
-    }
-    for(int i=2;i<SIEVE;i++){
-        if(mark[i] == 0){
-            prime.push_back(i);
-        }
+        for (int j=0; j<(int)prime.size() && prime[j]<=lp[i] && i*prime[j]<=N; ++j)
+            lp[i * prime[j]] = prime[j];
     }
 }
+
 int main(){
     sieve();
-    cc(prime.size())
-    for(int i=0;i<5;i++){
-        cout << prime[i] << " ";
+    for(int i=0;i<10;i++){
+        msg(i, prime[i])
     }
-    cout <<endl;
-
     return 0;
 }
