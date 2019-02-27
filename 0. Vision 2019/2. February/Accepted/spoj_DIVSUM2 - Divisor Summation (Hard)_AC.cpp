@@ -3,9 +3,9 @@ Minhazul Hayat Khan
 minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
-Problem Link:
+Problem Link: https://www.spoj.com/problems/DIVSUM2/en/
 Date : 26 / February / 2019
-Comment:
+Comment: very hard sod, had to implement the overflow handling.
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -17,23 +17,33 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-#define SIEVE 2000
-bool mark[SIEVE];
+
+#define SIEVE 199999999
+
+int mark[ (SIEVE/32)+2 ];
 vector<int>prime;
-void sieve(){
-    int root = sqrt(SIEVE)+1;
-    for(int i=2;i<root;i++){
-        if(mark[i] == 0){
-            for(int j=i;i*j<SIEVE;j++){
-                mark[i*j] = 1;
+bool CHECK(int N, int pos){
+    return (bool)( N&(1<<pos) );
+}
+int SET(int N, int pos){
+    return N= (N | (1<<pos));
+}
+void bsieve(){
+    int j, root = sqrt(SIEVE)+1;
+    for(int i=3;i<=root;i+=2){
+        if(CHECK(mark[i>>5], i&31) == 0){
+            for(j=i*i;j<=SIEVE;j+=(i<<1)){
+                mark[j>>5] = SET(mark[ j>>5 ] , j&31);
             }
         }
     }
-    for(int i=2;i<SIEVE;i++){
-        if(mark[i] == 0){
+    prime.push_back(2);
+    for(int i=3;i<=SIEVE;i+=2){
+        if(CHECK( mark[i>>5] , i&31)==0){
             prime.push_back(i);
         }
     }
+
 }
 
 unsigned long long int sumOfDivisor(long long int N){
@@ -60,10 +70,13 @@ unsigned long long int sumOfDivisor(long long int N){
     return sum;
 }
 int main(){
-    sieve();
-    cc(sumOfDivisor(20)) /// sod(48) = 124
-    cc(sumOfDivisor(48)) /// sod(48) = 124
-    cc(sumOfDivisor(72)) /// sod(72) = 195
-
+    bsieve();
+    unsigned long long int tc,n,sod;
+    scanf("%lld", &tc);
+    while(tc--){
+        scanf("%lld", &n);
+        sod = sumOfDivisor(n);
+        cout << sod -n << endl;
+    }
     return 0;
 }
