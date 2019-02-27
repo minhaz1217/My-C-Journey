@@ -3,9 +3,9 @@ Minhazul Hayat Khan
 minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
-Problem Link:
-Date : 21 / February / 2019
-Comment:
+Problem Link: http://lightoj.com/volume_showproblem.php?problem=1259
+Date : 27 / February / 2019
+Comment: easy sieve.
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -16,7 +16,6 @@ using namespace std;
 #define msg2(a,b,c) cout << a << " : " << b << " : " << c << endl;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-
 
 
 #define SIEVE 10000400
@@ -46,11 +45,28 @@ void bsieve(){
         }
     }
 }
-
 int main(){
     bsieve();
-    for(int i=0;i<10;i++){
-        cc(prime[i])
+    long long int tc,a,d,counter,caseCounter =1;
+    cin >> tc;
+    while(tc--){
+        cin >> a;
+        counter = 0;
+        for(int i=0;i<prime.size();i++){
+            if(prime[i] > a){
+                break;
+            }
+            d = a - prime[i];
+            if(d<prime[i]){
+                break;
+            }
+            if(CHECK( mark[d>>5] , d&31)==0){
+
+                //msg(d, prime[i])
+                counter++;
+            }
+        }
+        cout << "Case " << caseCounter++<< ": " << counter << endl;
     }
 
     return 0;
