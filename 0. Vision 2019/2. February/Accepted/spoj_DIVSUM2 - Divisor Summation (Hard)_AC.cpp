@@ -4,7 +4,7 @@ minhaz1217.github.io
 EWU, Bangladesh
 Problem Name:
 Problem Link: https://www.spoj.com/problems/DIVSUM2/en/
-Date : 26 / February / 2019
+Date : 27 / February / 2019
 Comment: very hard sod, had to implement the overflow handling.
 */
 #include<bits/stdc++.h>
