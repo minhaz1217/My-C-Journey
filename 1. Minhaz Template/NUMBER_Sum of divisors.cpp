@@ -17,7 +17,7 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-#define SIEVE 2000
+#define SIEVE 1000000
 bool mark[SIEVE];
 vector<int>prime;
 void sieve(){
@@ -61,6 +61,8 @@ unsigned long long int sumOfDivisor(long long int N){
 }
 int main(){
     sieve();
+    cc(sumOfDivisor(823543)) /// sod(48) = 124
+    cc(sumOfDivisor(49*7)) /// sod(48) = 124
     cc(sumOfDivisor(20)) /// sod(48) = 124
     cc(sumOfDivisor(48)) /// sod(48) = 124
     cc(sumOfDivisor(72)) /// sod(72) = 195

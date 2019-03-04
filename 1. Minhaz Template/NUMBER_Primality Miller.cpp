@@ -50,7 +50,7 @@ bool millerTest(long long int n, long long int d){
 bool isPrime(long long int n, int k=4){
     if(n == 2 || n == 3){
         return true;
-    }else if(n<=1 || n%2 ==0){
+    }else if(n<=1 || n%2 ==0 || n%3 == 0){
         return false;
     }
     long long int d = n-1; // we generate a d such that n -1 = 2^d * r
