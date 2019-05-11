@@ -15,16 +15,21 @@ vector<int>prime;
 void sieve(){
     prime.push_back(2);
     for(int i=3;i<SIEVE;i+=2){
-        if(!mark[i])
-        prime.push_back(i);
-        for(int j=i*i;j<SIEVE;j+=(2*i)){
-            mark[j] = 1;
+        if(!mark[i]){
+            prime.push_back(i);
+            for(int j=i*i;j<SIEVE;j+=(2*i)){
+                mark[j] = 1;
+            }
         }
     }
 }
 int main(){
     sieve();
     cc(prime.size())
+    for(int i=0;i<100;i++){
+        cout << prime[i] << " ";
+    }
+    cout << endl;
     for(int i=0;i<prime.size();i++){
         msg(i,prime[i])
     }
