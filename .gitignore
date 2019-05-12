@@ -5,7 +5,7 @@
 #for c
 *.o
 .o
-.exe
+*.exe
 desktop.ini
 OJ_UVA/in.txt
 OJ_UVA/in.txt
