@@ -14,7 +14,7 @@ void sliding_minimum_range_query(){
     vector<int>res;
     for(int i=0;i<arr.size();i++){
         val = arr[i];
-        while(!dq.empty() && dq.front().first >= val){
+        while(!dq.empty() && dq.front().first <= val){
             //msg2("POP1", dq.front().first, dq.front().second)
             dq.pop_front();
         }
