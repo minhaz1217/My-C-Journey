@@ -8,10 +8,13 @@ using namespace std;
 #define msg3(a,b,c,d) cout << a << " : " << b << " : " << c << " : " << d << endl;
 // line segment
 // A C++ program to check if two given line segments intersect
-struct Point
-{
-	int x;
-	int y;
+struct Point{
+    double x, y;
+    Point()
+    {
+        x = y = 0.0;
+    }
+    Point(double _x, double _y):x(_x), y(_y) {}
 };
 
 // Given three colinear points p, q, r, the function checks if
@@ -75,6 +78,9 @@ bool doIntersect(Point p1, Point q1, Point p2, Point q2)
 // Driver program to test above functions
 struct Line{
     Point a,b;
+    Line(){}
+    Line(Point _a, Point _b): a(_a), b(_b){}
+
 };
 Line makeLine(int a, int b , int c , int d){
     Point p = {a,b}, q = {c,d};
