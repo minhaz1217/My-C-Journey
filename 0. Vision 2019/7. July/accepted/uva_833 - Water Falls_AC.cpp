@@ -4,9 +4,9 @@ minhaz1217.github.io
 Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
-Problem Link: https://vjudge.net/problem/UVA-378
+Problem Link: https://vjudge.net/problem/UVA-833
 Date : 26 / July / 2019
-Comment: tried to solve using the cp template.
+Comment: easy problem but hard to implement.
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -88,64 +88,67 @@ void show(Line mnLine){
 void show(Point p){
     msg(p.x,p.y)
 }
-
-bool areParallel(Line l1, Line l2) { // check coefficients a & b
-    return (fabs(l1.a-l2.a) < EPS) && (fabs(l1.b-l2.b) < EPS);
+bool isEqual(double a , double b){
+    return ( fabs( (a-b) )<EPS );
 }
-bool areSame(Line l1, Line l2) { // also check coefficient c
-    return areParallel(l1 ,l2) && (fabs(l1.c - l2.c) < EPS);
-}
-bool areIntersect(Line l1, Line l2, Point &p) {
-    if (areParallel(l1, l2)){
-            return false;
-    }
-    // solve system of 2 linear algebraic equations with 2 unknowns
-    p.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
-    // special case: test for vertical line to avoid division by zero
-    if (fabs(l1.b) > EPS){
-            p.y = -(l1.a * p.x + l1.c);
-        }else{
-            p.y = -(l2.a * p.x + l2.c);
-        }
-        return true;
-}
-double DEG_to_RAD(double th){
-    return (th * acos(-1)/180.0);
-}
-Point rotate(Point p, double theta) {
-    // rotating (5,0) 180 degree produces (-5,0)
-    double rad = DEG_to_RAD(theta); // multiply theta with PI / 180.0
-    return Point(p.x * cos(rad) - p.y * sin(rad),
-    p.x * sin(rad) + p.y * cos(rad));
-}
-double dist(Point p1, Point p2) {
-    // hypot(dx, dy) returns sqrt(dx * dx + dy * dy)
-    return hypot(p1.x - p2.x, p1.y - p2.y);
-}
-
 int main(){
-    Line l1,l2;
-    long long tc;
-    Point p;
-    cin >> tc;
-    double a,b,c,d,flag;
-    cout << "INTERSECTING LINES OUTPUT" << endl;
+    Point p1, p2, pp;
+//    line lt;
+//    pointsToLine( Point(0,0), Point(10,0),lt );
+//    msg("L", pointToLineDistance(Point(5,5), lt  ) )
+    long long int tc,n,caseCounter = 1;
+    double a,b,c,d;
+    cin>>tc;
     while(tc--){
-        cin >> a >> b >> c >> d;
-        pointsToLine(Point(a,b), Point(c,d), l1);
-        cin >> a >> b >> c >> d;
-        pointsToLine(Point(a,b), Point(c,d), l2);
-        flag = areIntersect(l1,l2,p);
-        //msg3("Line1", l1.a,l1.b,l1.c)
-        //msg3("Line2", l2.a,l2.b,l2.c)
-        if(areSame(l1,l2)){
-            cout << "LINE" << endl;
-        }else if(flag == 0){
-            cout << "NONE" << endl;
-        }else{
-            printf("POINT %.2f %.2f\n", p.x, p.y);
+        if(caseCounter>1){
+            cout << endl;
         }
+        cin >> n;
+        vector<Line>lines;
+        vector<Point>points;
+        Line defaultLine;
+        pointsToLine(Point(0,0), Point(1000000,0), defaultLine);
+        lines.push_back(defaultLine);
+        while(n--){
+            cin >> a >> b >> c >> d;
+            Line l;
+            pointsToLine({a,b}, {c,d}, l);
+            lines.push_back(l);
+        }
+        cin >> n;
+        while(n--){
+            cin >> pp.x >> pp.y;
+            while(1){
+                Line mnLine;
+                double mn = INT_MAX*1.0;
+                for(int i=0;i<lines.size();i++){
+                    Line l = lines[i];
+                    if(orientation(l.lp, l.rp, pp) == 2){
+                        if(pp.x>=l.lp.x && pp.x<=l.rp.x){
+                            double dist = pointToLineDistance(pp, l);
+                            //msg(mn,dist)
+                            if(mn > dist ){
+                                ///msg(i, dist)
+                                mn = dist;
+                                mnLine = l;
+                            }
+
+                        }
+
+                    }
+                }
+                if( isEqual(mnLine.a, defaultLine.a) && isEqual(mnLine.b, defaultLine.b) && isEqual(mnLine.c, defaultLine.c) ){
+                    break;
+                }
+                if(mnLine.lp.y<mnLine.rp.y){
+                    pp = mnLine.lp;
+                }else{
+                    pp = mnLine.rp;
+                }
+            }
+            cout << pp.x << endl;
+        }
+        caseCounter++;
     }
-    cout << "END OF OUTPUT" << endl;
     return 0;
 }

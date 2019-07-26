@@ -4,9 +4,9 @@ minhaz1217.github.io
 Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
-Problem Link: https://vjudge.net/problem/UVA-378
+Problem Link: https://vjudge.net/problem/UVA-837
 Date : 26 / July / 2019
-Comment: tried to solve using the cp template.
+Comment: same as waterfall problem with a twist.
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -88,64 +88,58 @@ void show(Line mnLine){
 void show(Point p){
     msg(p.x,p.y)
 }
-
-bool areParallel(Line l1, Line l2) { // check coefficients a & b
-    return (fabs(l1.a-l2.a) < EPS) && (fabs(l1.b-l2.b) < EPS);
+bool isEqual(double a , double b){
+    return ( fabs( (a-b) )<EPS );
 }
-bool areSame(Line l1, Line l2) { // also check coefficient c
-    return areParallel(l1 ,l2) && (fabs(l1.c - l2.c) < EPS);
-}
-bool areIntersect(Line l1, Line l2, Point &p) {
-    if (areParallel(l1, l2)){
-            return false;
-    }
-    // solve system of 2 linear algebraic equations with 2 unknowns
-    p.x = (l2.b * l1.c - l1.b * l2.c) / (l2.a * l1.b - l1.a * l2.b);
-    // special case: test for vertical line to avoid division by zero
-    if (fabs(l1.b) > EPS){
-            p.y = -(l1.a * p.x + l1.c);
-        }else{
-            p.y = -(l2.a * p.x + l2.c);
-        }
-        return true;
-}
-double DEG_to_RAD(double th){
-    return (th * acos(-1)/180.0);
-}
-Point rotate(Point p, double theta) {
-    // rotating (5,0) 180 degree produces (-5,0)
-    double rad = DEG_to_RAD(theta); // multiply theta with PI / 180.0
-    return Point(p.x * cos(rad) - p.y * sin(rad),
-    p.x * sin(rad) + p.y * cos(rad));
-}
-double dist(Point p1, Point p2) {
-    // hypot(dx, dy) returns sqrt(dx * dx + dy * dy)
-    return hypot(p1.x - p2.x, p1.y - p2.y);
-}
-
 int main(){
-    Line l1,l2;
-    long long tc;
-    Point p;
+
+    long long int tc,n,caseCounter =1;
+    double weight,a,b,c,d,w,mainDist;
     cin >> tc;
-    double a,b,c,d,flag;
-    cout << "INTERSECTING LINES OUTPUT" << endl;
     while(tc--){
-        cin >> a >> b >> c >> d;
-        pointsToLine(Point(a,b), Point(c,d), l1);
-        cin >> a >> b >> c >> d;
-        pointsToLine(Point(a,b), Point(c,d), l2);
-        flag = areIntersect(l1,l2,p);
-        //msg3("Line1", l1.a,l1.b,l1.c)
-        //msg3("Line2", l2.a,l2.b,l2.c)
-        if(areSame(l1,l2)){
-            cout << "LINE" << endl;
-        }else if(flag == 0){
-            cout << "NONE" << endl;
-        }else{
-            printf("POINT %.2f %.2f\n", p.x, p.y);
+        cin >> n;
+        if(caseCounter>1){
+            cout << endl;
         }
-    }
-    cout << "END OF OUTPUT" << endl;
+        caseCounter++;
+        vector<pair<Line, double> > lines;
+        vector<pair<double, double> > points,output;
+        Line defaultLine;
+        pointsToLine(Point(-1000000,0), Point(1000000,0), defaultLine);
+        lines.push_back(make_pair(defaultLine, 1));
+        while(n--){
+            cin >> a >> b >> c >> d >> w;
+            Line l;
+            pointsToLine( Point(a,b), Point(c,d),l );
+            lines.push_back(make_pair(l,w));
+            points.push_back(make_pair(a,b));
+            points.push_back(make_pair(c,d));
+        }
+        sort(points.begin(), points.end());
+
+        for(int i=0;i<points.size();i++){
+            Point pp(points[i].first, points[i].second);
+            mainDist = 1;
+            //show(pp);
+            for(int j=0;j<lines.size();j++){
+                Line l = lines[j].first;
+                weight = lines[j].second;
+                if(pp.x>=l.lp.x && pp.x<l.rp.x){
+                    /// the point is inside the line
+                    mainDist *= weight;
+                    //msg("INTER", weight)
+
+                }
+            }
+            //msg(pp.x,mainDist)
+            output.push_back(make_pair(pp.x, mainDist));
+        }
+        cout << output.size()+1 << endl;
+        printf("-inf %.3f %.3f\n", output[0].first, 1.0);
+        for(int i=0;i<output.size()-1;i++){
+            printf("%.3f %.3f %.3f\n", output[i].first,output[i+1].first, output[i].second);
+        }
+        printf("%.3f +inf 1.000\n", output[output.size()-1].first);
+        }
     return 0;
 }
