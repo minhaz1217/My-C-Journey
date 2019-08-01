@@ -1,0 +1,54 @@
+/*
+Minhazul Hayat Khan
+minhaz1217.github.io
+Website: www.minhazul.com
+EWU, Bangladesh
+Problem Name:
+Problem Link:
+Date : 30 / July / 2019
+Comment:
+*/
+#include<bits/stdc++.h>
+//#include<iostream>
+using namespace std;
+#define DEBUG 1
+#define check(a) DEBUG==1?(cout << a << endl):null;
+#define cc(a) DEBUG==1?(cout << a << endl):cout<<"";
+#define msg(a,b) DEBUG==1?(cout << a << " : " << b << endl):cout<<"";
+#define msg2(a,b,c) DEBUG==1?(cout << a << " : " << b << " : " << c << endl):cout<<"";
+#define msg3(a,b,c,d) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << endl):cout<<"";
+#define msg4(a,b,c,d,e) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << " : " << e << endl):cout<<"";
+#define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+#define PI acos(-1)
+
+double DEG_to_RAD(double th){
+    return (th * acos(-1)/180.0);
+}
+double RAD_to_DEG(double rad){
+    return rad*180.0 / acos(-1);
+}
+int main(){
+    double n,t,p,a,T,th,rt,tempT,val;
+    cc(cos(DEG_to_RAD(45)))
+    cin >> n >> T;
+    p = 0;
+    for(int i=1;i<=n;i++){
+        cin >> a >> t;
+        if(i>1){
+            cout << " ";
+        }
+        tempT = (int)T%(int)t;
+        rt = ( tempT *360.0/t ) ;
+        val = RAD_to_DEG( cos( DEG_to_RAD(rt) ) );
+        th = fabs(val - 180);
+
+        p = sqrt( p*p + (a*a) + 2.0*p*a * th);
+        msg(p,th)
+        //msg(p,th)
+        //cout << p;
+    }
+    cout << endl;
+
+    return 0;
+}

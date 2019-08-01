@@ -1,0 +1,88 @@
+/*
+Minhazul Hayat Khan
+minhaz1217.github.io
+Website: www.minhazul.com
+EWU, Bangladesh
+Problem Name:
+Problem Link: https://vjudge.net/problem/UVA-10927
+Date : 26 / July / 2019
+Comment:
+*/
+#include<bits/stdc++.h>
+//#include<iostream>
+using namespace std;
+#define DEBUG 1
+#define check(a) DEBUG==1?(cout << a << endl):null;
+#define cc(a) DEBUG==1?(cout << a << endl):cout<<"";
+#define msg(a,b) DEBUG==1?(cout << a << " : " << b << endl):cout<<"";
+#define msg2(a,b,c) DEBUG==1?(cout << a << " : " << b << " : " << c << endl):cout<<"";
+#define msg3(a,b,c,d) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << endl):cout<<"";
+#define msg4(a,b,c,d,e) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << " : " << e << endl):cout<<"";
+#define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+
+#define EPS 1e-9
+struct Point3d{
+    double x, y, z;
+    Point3d(){
+        x = y = z = 0.0;
+    }
+    Point3d(double _x, double _y, double _z):x(_x), y(_y),z(_z) {}
+    bool operator == (Point3d other) const {
+        return (fabs(x - other.x) < EPS && (fabs(y - other.y) < EPS) &&(fabs(z - other.z) < EPS) );
+    }
+    bool operator < (Point3d other) const {
+        if (fabs(x - other.x) > EPS){
+                return x < other.x;
+        }else if( fabs(y-other.y) > EPS ){
+            return y <other.y;
+        }else{
+            return z<other.z;
+        }
+    }
+};
+struct Line3d{
+    Point3d lp,rp;
+    Line3d(){}
+    Line3d(Point3d _a, Point3d _b){
+        if(_a<_b){
+            lp = _a;
+            rp = _b;
+        }else{
+            lp = _b;
+            rp = _a;
+        }
+    }
+};
+double pointDistance3d(Point3d a, Point3d b){
+    return (double)sqrt( (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y) + (a.z-b.z)*(a.z-b.z) );
+}
+double pointToLineDistance3d(Point3d p, Line3d l){
+    double lineLength = pointDistance3d( l.lp,l.rp );
+    double u, interX,interY,interZ;
+    double px = p.x, py = p.y, pz = p.z, x1 = l.lp.x, y1 = l.lp.y, z1 = l.lp.z, x2 = l.rp.x , y2 = l.rp.y,z2=l.rp.z;
+
+    u = ( (px - x1 )* (x2-x1) +
+          (py - y1) * (y2-y1) +
+          (pz - z2) * (z2-z1 ))/
+          (lineLength * lineLength);
+    if(u <0.0f || u > 1.0f){
+        cc("NONE")
+        return 0;
+    }
+    interX = x1 + u * (x2 - x1);
+    interY = y1 + u * (y2 - y1);
+    interZ = z1 + u * (z2 - z1);
+    Point3d intersectPoint(interX, interY, interZ);
+    double dist = pointDistance3d(intersectPoint, p);
+    return dist;
+}
+
+int main(){
+    double a,b,c,d,e,f;
+    while(cin >> a >> b >> c >> d >> e >> f){
+        msg2(a,b,c)
+        msg2(d,e,f)
+        msg("DIST", pointToLineDistance3d( Point3d(d,e,f), Line3d( Point3d(a,b,c), Point3d(0,0,100) ) ))
+    }
+    return 0;
+}

@@ -24,27 +24,24 @@ using namespace std;
 #define EPS 1e-9
 struct Point{
     double x, y;
-    Point()
-    {
+    Point(){
         x = y = 0.0;
     }
     Point(double _x, double _y):x(_x), y(_y) {}
+    bool operator == (Point other) const {
+        return (fabs(x - other.x) < EPS && (fabs(y - other.y) < EPS));
+    }
+    bool operator < (Point other) const {
+        if (fabs(x - other.x) > EPS)
+                return x < other.x;
+        return y < other.y;
+    }
 };
-int orientation(Point p, Point q, Point r)
-{
-	// See https://www.geeksforgeeks.org/orientation-3-ordered-points/
-	// for details of below formula.
-	int val = (q.y - p.y) * (r.x - q.x) -
-			(q.x - p.x) * (r.y - q.y);
-
-	if (val == 0) return 0; // colinear
-
-	return (val > 0)? 1: 2; // clock or counterclock wise
-}
 struct Line{
     double a, b, c;
     Point lp,rp;
     Line(){}
+    Line(double _a, double _b,double _c):a(_a), b(_b), c(_c){}
     Line(Point p1, Point p2){
         if (fabs(p1.x - p2.x) < EPS){
             a = 1.0;
@@ -78,17 +75,81 @@ void pointsToLine(Point p1, Point p2, Line &l){
     l.lp = p1;
     l.rp = p2;
 }
+
+double DEG_to_RAD(double th){
+    return (th * acos(-1)/180.0);
+}
+double RAD_to_DEG(double rad){
+    return rad*180.0 / acos(-1);
+}
+double pointDistance(Point p1, Point p2) {
+    // hypot(dx, dy) returns sqrt(dx * dx + dy * dy)
+    return hypot(p1.x - p2.x, p1.y - p2.y);
+}
+int orientation(Point p, Point q, Point r)
+{
+	// See https://www.geeksforgeeks.org/orientation-3-ordered-points/
+	// for details of below formula.
+	int val = (q.y - p.y) * (r.x - q.x) -
+			(q.x - p.x) * (r.y - q.y);
+
+	if (val == 0) return 0; // colinear
+
+	return (val > 0)? 1: 2; // clock or counterclock wise
+}
+
+
 double pointToLineDistance(Point p, Line l){
-    return ( abs(l.a*p.x +l.b*p.y + l.c )/ sqrt( l.a*l.a + l.b*l.b ) );
+    return ( fabs(l.a*p.x +l.b*p.y + l.c )/ sqrt( l.a*l.a + l.b*l.b ) );
+}
+
+double pointToLineDistanceMain(Point p, Line l){
+    double lineLength = pointDistance(l.lp, l.rp);
+    double u,intersectionX, intersectionY;
+    double p1 = p.x, p2 = p.y, x1 = l.lp.x, y1 = l.lp.y, x2 = l.rp.x , y2 = l.rp.y;
+
+    u = ( (p1 - x1 ) * (x2 - x1) +
+          (p2 - y1) * (y2-y1) ) /
+          (lineLength * lineLength);
+    //msg("U", u)
+    if(u < 0.0f || u >=1.0f){
+
+        if(pointDistance(l.rp, p) < pointDistance(l.lp, p)){
+            intersectionX = l.rp.x;
+            intersectionY = l.rp.y;
+        }else{
+            intersectionX = l.lp.x;
+            intersectionY = l.lp.y;
+        }
+        //msg2("Intersection2", intersectionX, intersectionY)
+        return min( pointDistance(l.rp, p), pointDistance(l.lp,p) );
+        //return 0; // closest point does not fall within the line segment
+    }
+    intersectionX = x1 + u *(x2-x1);
+    intersectionY = y1 + u *(y2-y1);
+    //msg2("Intersection1", intersectionX, intersectionY)
+    return pointDistance( Point(intersectionX, intersectionY), p );
 }
 
 void show(Line mnLine){
-    msg3(mnLine.lp.x, mnLine.lp.y, mnLine.rp.x, mnLine.rp.y)
+    cout << "( " << mnLine.lp.x << "," << mnLine.lp.y << " )->( " << mnLine.rp.x << ", " << mnLine.rp.y << ")"  << endl;
 }
 void show(Point p){
-    msg(p.x,p.y)
+    cout << "(" << p.x << "," << p.y <<")" << endl;
 }
-
+void clean(double &a){
+    if(fabs(a-0)<EPS){
+        a = 0;
+    }
+}
+void clean(Point &p){
+    if(fabs(p.x-0)<EPS){
+        p.x = 0;
+    }
+    if(fabs(p.y-0)<EPS){
+        p.y = 0;
+    }
+}
 bool areParallel(Line l1, Line l2) { // check coefficients a & b
     return (fabs(l1.a-l2.a) < EPS) && (fabs(l1.b-l2.b) < EPS);
 }
@@ -109,18 +170,42 @@ bool areIntersect(Line l1, Line l2, Point &p) {
         }
         return true;
 }
-double DEG_to_RAD(double th){
-    return (th * acos(-1)/180.0);
-}
 Point rotate(Point p, double theta) {
     // rotating (5,0) 180 degree produces (-5,0)
     double rad = DEG_to_RAD(theta); // multiply theta with PI / 180.0
     return Point(p.x * cos(rad) - p.y * sin(rad),
     p.x * sin(rad) + p.y * cos(rad));
 }
-double dist(Point p1, Point p2) {
-    // hypot(dx, dy) returns sqrt(dx * dx + dy * dy)
-    return hypot(p1.x - p2.x, p1.y - p2.y);
+
+
+
+double angleBetweenPoints(Point a, Point b , Point c){
+    /*   a
+       /
+      /
+     b ----- c
+    */
+    double ab = pointDistance(a,b), bc = pointDistance(b,c), ac = pointDistance(a,c);
+    return acos( (bc*bc  + ab*ab - ac*ac)/(2.0*bc*ab) ); // will return the value in radian.
+
+}
+Point rotateAroundPoint(Point p, Point rotateAround, double degree){ // degree in degree
+    Point d = rotate(Point(p.x-rotateAround.x, p.y-rotateAround.y), degree);
+    d.x += rotateAround.x;
+    d.y += rotateAround.y;
+    return d;
+}
+Point changeLineLength( Point p1, Point p2, double sz ){
+    double n = sz;
+    double D = pointDistance(p1,p2);
+    Point p;
+    p.x = ((p2.x -p1.x)*n) / D + p2.x;
+    p.y = ((p2.y -p1.y)*n) / D + p2.y;
+//    p.y = ((1.0-n/D)*p1.y + (n/D)*p2.y);
+    return p;
+}
+void lineFromConstants(double a, double b , double c, Line &l){
+    pointsToLine(Point(0, -c/b), Point(-c/a, 0), l);
 }
 
 int main(){
