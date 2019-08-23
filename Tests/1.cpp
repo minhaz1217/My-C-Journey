@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 //#include<iostream>
+#include<unistd.h>
 using namespace std;
 #define check(a) cout << a << endl;
 #define cc(a) cout << a << endl;
@@ -8,10 +9,10 @@ using namespace std;
 
 int main(){
 
-    string str = "HELLO WORLD", str2;
-    str2 = str.substr(1,6);
-    cout << str2 << endl;
-
-
+    chdir("D:/MINHAZ/testing");
+    system("pwd");
+    system(" echo HELLO WORLD >> testing.txt");
+    system(" echo HELLO WORLD >> D:/MINHAZ/test.txt");
+    getchar();
     return 0;
 }

@@ -77,6 +77,30 @@ double pointToLineDistance3d(Point3d p, Line3d l){
     return dist;
 }
 
+struct Rect3d{
+    Point3d bl, tr;
+    Rect3d(){}
+    Rect3d(Point3d _bl, Point3d _tr):bl(_bl), tr(_tr){}
+};
+Rect3d commonRect(Rect3d a, Rect3d b){
+    Rect3d r;
+    r.bl.x = max( a.bl.x,b.bl.x );
+    r.bl.y = max( a.bl.y,b.bl.y );
+    r.bl.z = max( a.bl.z,b.bl.z );
+
+    r.tr.x = min( a.tr.x,b.tr.x );
+    r.tr.y = min( a.tr.y,b.tr.y );
+    r.tr.z = min( a.tr.z,b.tr.z );
+    if( r.bl.x > r.tr.x || r.bl.y > r.tr.y || r.bl.z > r.tr.z ){
+        r.bl = Point3d(-1,-1,-1);
+        r.tr = Point3d(-1,-1,-1);
+    }
+    return r;
+}
+double rect3dArea(Rect3d r){
+    return ( (r.tr.x-r.bl.x) * (r.tr.y-r.bl.y) * (r.tr.z-r.bl.z) );
+}
+
 int main(){
     double a,b,c,d,e,f;
     while(cin >> a >> b >> c >> d >> e >> f){

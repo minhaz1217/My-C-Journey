@@ -75,6 +75,24 @@ void pointsToLine(Point p1, Point p2, Line &l){
     l.lp = p1;
     l.rp = p2;
 }
+Line pointsToLine(Point p1, Point p2){
+    Line l;
+    if (fabs(p1.x - p2.x) < EPS){
+        l.a = 1.0;
+        l.b = 0.0;
+        l.c = -p1.x; // default values
+    }else{
+        l.a = -(double)(p1.y - p2.y) / (p1.x - p2.x);
+        l.b = 1.0; // IMPORTANT: we fix the value of b to 1.0
+        l.c = -(double)(l.a * p1.x) - p1.y;
+    }
+    if(p1.x > p2.x){
+        swap(p1,p2);
+    }
+    l.lp = p1;
+    l.rp = p2;
+    return l;
+}
 
 double DEG_to_RAD(double th){
     return (th * acos(-1)/180.0);
@@ -97,7 +115,13 @@ int orientation(Point p, Point q, Point r)
 
 	return (val > 0)? 1: 2; // clock or counterclock wise
 }
-
+double slope(Point a, Point b){
+    if(a.x == b.x){
+        /// the line is vertical, so slope is infinite. we avoid 0 value
+        return INT_MAX;
+    }
+    return ( (a.y-b.y)/(a.x-b.x) );
+}
 
 double pointToLineDistance(Point p, Line l){
     return ( fabs(l.a*p.x +l.b*p.y + l.c )/ sqrt( l.a*l.a + l.b*l.b ) );
@@ -186,7 +210,7 @@ double angleBetweenPoints(Point a, Point b , Point c){
      b ----- c
     */
     double ab = pointDistance(a,b), bc = pointDistance(b,c), ac = pointDistance(a,c);
-    return acos( (bc*bc  + ab*ab - ac*ac)/(2.0*bc*ab) ); // will return the value in radian.
+    return acos( (bc*bc  + ab*ab - ac*ac)/(2.0*bc*ab) ) * 180.0 / acos(-1) ;
 
 }
 Point rotateAroundPoint(Point p, Point rotateAround, double degree){ // degree in degree
