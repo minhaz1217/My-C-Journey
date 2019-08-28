@@ -116,21 +116,32 @@ double polygonArea(const vector<Point> &P){
 
 /// needs CROSS, toVec
 
+
+/// IN POLYGON START
+
 // returns true if point p is in either convex/concave polygon P
 bool inPolygon(Point pt, const vector<Point> &P) {
+    /// on the line will also return true
+    int ontheline = 0;
     if ((int)P.size() == 0){
         return false;
     }
     double sum = 0; // assume the first vertex is equal to the last vertex
     for (int i = 0; i < (int)P.size()-1; i++) {
+        if( fabs(dist(pt,p[i])+ dist(pt,p[i+1]) - dist(p[i],p[i+1]))< EPS   ){
+            ontheline = 1;
+        }
         if (ccw(pt, P[i], P[i+1])){
             sum += angle(P[i], pt, P[i+1]); // left turn/ccw
         }else{
             sum -= angle(P[i], pt, P[i+1]);
         } // right turn/cw
+
     }
-    return fabs(fabs(sum) - 2*acos(-1)) < EPS;
+    return (fabs(fabs(sum) - 2*acos(-1)) < EPS || ontheline);
 }
+
+/// IN POLYGON END
 
 
 bool polygonCollinear(Point p, Point q, Point r){
