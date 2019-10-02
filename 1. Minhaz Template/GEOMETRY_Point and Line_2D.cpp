@@ -4,9 +4,9 @@ minhaz1217.github.io
 Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
-Problem Link: https://vjudge.net/problem/UVA-378
+Problem Link:
 Date : 26 / July / 2019
-Comment: tried to solve using the cp template.
+Comment: GEOMETRY POINT AND LINE 2D
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -174,6 +174,35 @@ void clean(Point &p){
         p.y = 0;
     }
 }
+void clean(Line &l){
+    l.a = fabs(l.a)<EPS?0:l.a;
+    l.b = fabs(l.b)<EPS?0:l.b;
+    l.c = fabs(l.c)<EPS?0:l.c;
+    clean(l.lp);
+    clean(l.rp);
+}
+Line generatePointsOfALine(Line l){
+    double tl= -9999.25, tr = 9999.15;
+    l.lp = Point(tl, -(l.a*tl + l.c)/l.b);
+    l.rp = Point(tr, -(l.a*tr + l.c)/l.b);
+    if(l.a < EPS){
+        l.lp.x = 0;
+        l.rp.x = 0;
+        l.lp.y = -l.c/l.b;
+        l.rp.y = -l.c/l.b;
+    }
+    if(l.b < EPS){
+        l.lp.y = 0;
+        l.rp.y = 0;
+        l.lp.x = -l.c/l.a;
+        l.rp.x = -l.c/l.a;
+    }
+    if(l.a<EPS && l.b<EPS){
+        l.lp = Point(0,0);
+        l.rp = Point(0,0);
+    }
+    return l;
+}
 bool areParallel(Line l1, Line l2) { // check coefficients a & b
     return (fabs(l1.a-l2.a) < EPS) && (fabs(l1.b-l2.b) < EPS);
 }
@@ -230,6 +259,45 @@ Point changeLineLength( Point p1, Point p2, double sz ){
 }
 void lineFromConstants(double a, double b , double c, Line &l){
     pointsToLine(Point(0, -c/b), Point(-c/a, 0), l);
+}
+
+Point intersectingLineSegment(Point p, Point q, Point A, Point B) {
+  double a = B.y - A.y;
+  double b = A.x - B.x;
+  double c = B.x * A.y - A.x * B.y;
+  double u = fabs(a * p.x + b * p.y + c);
+  double v = fabs(a * q.x + b * q.y + c);
+  return Point((p.x * v + q.x * u) / (u+v), (p.y * v + q.y * u) / (u+v));
+}
+
+Line generatePointsOfALine(Line l){
+    double tl= -9999.25, tr = 9999.15;
+    l.lp = Point(tl, -(l.a*tl + l.c)/l.b);
+    l.rp = Point(tr, -(l.a*tr + l.c)/l.b);
+    if(fabs(l.a) < EPS){
+        l.lp.x = tl;
+        l.rp.x = tr;
+        l.lp.y = -l.c/l.b;
+        l.rp.y = -l.c/l.b;
+    }
+    if(fabs(l.b) < EPS){
+        l.lp.x = -l.c/l.a;
+        l.rp.x = -l.c/l.a;
+        l.lp.y = tl;
+        l.rp.y = tr;
+    }
+    if(fabs(l.a)<EPS && fabs(l.b)<EPS){
+        l.lp = Point(0,0);
+        l.rp = Point(0,0);
+    }
+    return l;
+}
+
+Point lineToLineIntersection(Line p, Line q){
+    p =generatePointsOfALine(p);
+    q =generatePointsOfALine(q);
+    Point pp = intersectingLineSegment(p.lp, p.rp, q.lp,q.rp);
+    return pp;
 }
 
 int main(){

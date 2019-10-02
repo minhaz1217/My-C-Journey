@@ -117,6 +117,7 @@ int main()
 	outputCheck(doIntersect(makeLine(0,0,5,0),makeLine(10,5,10,-5)));
 
 /*
+
 2 : 2 : 1 : 1
 No
 2 : 1 : 1 : 2

@@ -27,10 +27,10 @@ void hv_intersection()
     {
         cout << "I " << i << endl;
         event c = events[i];
-        if (c.type==0) s.insert(c.p1);//insert starting point of line segment into set
-        else if
-    {
-        (c.type==1) s.erase(c.p2);//remove starting point of line segment from set, equivalent to removing line segment
+        if (c.type==0)
+            s.insert(c.p1);//insert starting point of line segment into set
+        else if(c.type==1){
+            s.erase(c.p2);//remove starting point of line segment from set, equivalent to removing line segment
         }
         else
         {

@@ -6,20 +6,11 @@ EWU, Bangladesh
 Problem Name:
 Problem Link:
 Date : 23 / August / 2019
-Comment:
+Comment: GEOMETRY POLYGON
 */
 #include<bits/stdc++.h>
 //#include<iostream>
 using namespace std;
-#define DEBUG 1
-#define check(a) DEBUG==1?(cout << a << endl):null;
-#define cc(a) DEBUG==1?(cout << a << endl):cout<<"";
-#define msg(a,b) DEBUG==1?(cout << a << " : " << b << endl):cout<<"";
-#define msg2(a,b,c) DEBUG==1?(cout << a << " : " << b << " : " << c << endl):cout<<"";
-#define msg3(a,b,c,d) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << endl):cout<<"";
-#define msg4(a,b,c,d,e) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << " : " << e << endl):cout<<"";
-#define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-
 
 #define EPS 1e-9
 struct Point{
@@ -55,6 +46,12 @@ double dot(vec a, vec b){
 double norm_sq(vec v){
     return v.x * v.x + v.y * v.y;
 }
+
+double angle(Point a, Point o, Point b){
+	// returns angle aob in rad
+    vec oa = toVec(o, a), ob = toVec(o, b);
+    return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob)));
+}
 // returns the distance from p to the line defined by
 // two Points a and b (a and b must be different)
 // the closest Point is stored in the 4th parameter (byref)
@@ -83,13 +80,6 @@ double distToLineSegment(Point p, Point a, Point b, Point &c){
     return distToLine(p, a, b, c);
 } // run distToLine as above
 
-double angle(Point a, Point o, Point b){
-	// returns angle aob in rad
-    vec oa = toVec(o, a), ob = toVec(o, b);
-    return acos(dot(oa, ob) / sqrt(norm_sq(oa) * norm_sq(ob)));
-}
-
-
 
 /// POLYGON START
 // returns the perimeter, which is the sum of Euclidian distances
@@ -113,11 +103,29 @@ double polygonArea(const vector<Point> &P){
     }
     return fabs(result) / 2.0;
 }
+Point polygonCentroid(vector<Point>p){
+    /// careful about the rotation, if counter clockwise polygon then gives right answer, if clockwise, then just multiply pp by -1.
+    // or center of mass
+    if(cw(p[0],p[1],p[2])){
+        reverse(p.begin(),p.end());
+    }
+    double area = polygonArea(p);
+    Point pp(0,0);
+    for(int i=0;i<p.size()-1;i++){
+        pp.x += (p[i].x+p[i+1].x)*(p[i].x * p[i+1].y - p[i+1].x * p[i].y);
+        pp.y += (p[i].y+p[i+1].y)*(p[i].x * p[i+1].y - p[i+1].x * p[i].y);
+    }
+    pp.x = pp.x * 1.0/(6.0*area);
+    pp.y = pp.y * 1.0/(6.0*area);
+    return pp;
+}
 
 /// needs CROSS, toVec
 
 
 /// IN POLYGON START
+
+// returns true if point p is in either convex/concave polygon P
 
 // returns true if point p is in either convex/concave polygon P
 bool inPolygon(Point pt, const vector<Point> &P) {
@@ -128,7 +136,7 @@ bool inPolygon(Point pt, const vector<Point> &P) {
     }
     double sum = 0; // assume the first vertex is equal to the last vertex
     for (int i = 0; i < (int)P.size()-1; i++) {
-        if( fabs(dist(pt,p[i])+ dist(pt,p[i+1]) - dist(p[i],p[i+1]))< EPS   ){
+        if( fabs(dist(pt,P[i])+ dist(pt,P[i+1]) - dist(P[i],P[i+1]))< EPS   ){
             ontheline = 1;
         }
         if (ccw(pt, P[i], P[i+1])){
@@ -199,8 +207,44 @@ vector<Point> cutPolygon(Point a, Point b, const vector<Point> &Q){
     return P;
 }
 
+// cuts polygon Q along the line formed by Point a -> Point b
+// (note: the last Point must be the same as the first Point)
+pair<vector<Point> ,vector<Point> >  cutPolygonLeftRight(Point a, Point b, const vector<Point> &Q){
+    vector<Point> P, R; // p gives the left portion, r gives the right portion.
+    Point t;
+//    for(auto it: Q){
+//        msg(it.x,it.y)
+//    }
+    for (int i = 0; i < (int)Q.size(); i++){
+        double left1 = ccw(a ,b,Q[i]), left2 = 0;
+        if (i != (int)Q.size()-1){
+            left2 = ccw(a ,b,Q[i+1]);
+		}
+        if (left1){
+            P.push_back(Q[i]); // Q[i] is on the left of ab
+		}else{
+		    R.push_back(Q[i]); // it is on the right side
+		}
+        if (left1 != left2 ){
+			// edge (Q[i], Q[i+1]) crosses line ab
+			t = polygonLineIntersectSeg(Q[i], Q[i+1], a, b);
+            P.push_back(t);
+            if( !(R.empty()) && !(R.back() == t)){
+                R.push_back(t);
+            }
+		}
+    }
+    if ( !P.empty() && !(P.back() == P.front())){
+        P.push_back(P.front()); // make P’s first Point = P’s last Point
+	}
+	if( !R.empty() && !(R.back() == R.front()) ){
+        R.push_back(R.front());
+	}
+	return make_pair(P,R);
+}
 
 /// CONVEX HULL START
+
 
 struct vec{
     double x, y; // name: ‘vec’ is different from STL vector
@@ -237,6 +281,7 @@ bool angleCmp(Point a, Point b){
 } // compare two angles
 
 vector<Point> convexHull(vector<Point> P){
+    // gives wrong answer for collinear points. use convexHullCo
 // the content of P may be reshuffled
 	int i, j, n = (int)P.size();
     if (n <= 3){
@@ -275,6 +320,68 @@ vector<Point> convexHull(vector<Point> P){
 		}
     } // or pop the top of S until we have a left turn
     return S;
+}
+
+
+
+/// CONVEX HULL 2
+
+bool cmp(Point a,Point b) {
+    return a.x < b.x || (a.x == b.x && a.y < b.y);
+}
+
+bool cw(Point a, Point b, Point c) {
+    return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) < 0;
+}
+
+bool ccw(Point a, Point b, Point c) {
+    return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) > 0;
+}
+
+void convexHullCo(vector<Point>& a) {
+    /// generates a CLOCKWISE polygon.
+    // gives right answer for collinear points.
+    if (a.size() == 1)
+        return;
+
+    sort(a.begin(), a.end(), &cmp);
+    Point p1 = a[0], p2 = a.back();
+    vector<Point> up, down;
+    up.push_back(p1);
+    down.push_back(p1);
+    for (int i = 1; i < (int)a.size(); i++) {
+        if (i == a.size() - 1 || cw(p1, a[i], p2)) {
+            while (up.size() >= 2 && !cw(up[up.size()-2], up[up.size()-1], a[i]))
+                up.pop_back();
+            up.push_back(a[i]);
+        }
+        if (i == a.size() - 1 || ccw(p1, a[i], p2)) {
+            while(down.size() >= 2 && !ccw(down[down.size()-2], down[down.size()-1], a[i]))
+                down.pop_back();
+            down.push_back(a[i]);
+        }
+    }
+
+    a.clear();
+    for (int i = 0; i < (int)up.size(); i++)
+        a.push_back(up[i]);
+    for (int i = down.size() - 2; i > 0; i--)
+        a.push_back(down[i]);
+    reverse(a.begin(),a.end());
+}
+
+/// CONVEX HULL 2 END
+vector<Point> polygonRotate(vector<Point> p, double deg){
+    Point c = polygonCentroid(p);
+    vector<Point> pp;
+    for(auto i : p){
+        pp.push_back(rotateAroundPoint(i, c, deg));
+    }
+    return pp;
+}
+
+void show(Point p){
+    cout << "(" << p.x << "," << p.y <<")" << endl;
 }
 int main(){
     double n,x,y;

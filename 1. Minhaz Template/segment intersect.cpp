@@ -57,7 +57,6 @@ inline bool isBetween(Point a, Point b, Point c)
 {
     return (min(a.X, b.X) <= c.X && c.X <= max(a.X, b.X) && min(a.Y, b.Y) <= c.Y && c.Y <= max(a.Y,b.Y));
 }
-
 inline bool intersect(Point a, Point b, Point c, Point d)
 {
     if (isCollinear(a, b, c) && isBetween(a, b, c)) return true;

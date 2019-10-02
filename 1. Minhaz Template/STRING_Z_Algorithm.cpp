@@ -20,8 +20,6 @@ vector<int> z_algo(string s) {
     }
     return z;
 }
-
-
 int main(){
     vector<int> A;
     string str = "ABCABCACAB";

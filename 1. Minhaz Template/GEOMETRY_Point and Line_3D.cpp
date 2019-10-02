@@ -4,9 +4,9 @@ minhaz1217.github.io
 Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
-Problem Link: https://vjudge.net/problem/UVA-10927
+Problem Link:
 Date : 26 / July / 2019
-Comment:
+Comment: POINT AND LINE 3D
 */
 #include<bits/stdc++.h>
 //#include<iostream>
