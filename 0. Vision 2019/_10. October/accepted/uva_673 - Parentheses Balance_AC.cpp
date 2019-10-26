@@ -6,7 +6,7 @@ EWU, Bangladesh
 Problem Name:
 Problem Link: https://onlinejudge.org/external/6/673.pdf
 Date : 27 / October / 2019
-Comment:
+Comment: got first WA because didn't use getline.
 */
 #include<bits/stdc++.h>
 //#include<iostream>
@@ -26,9 +26,11 @@ int main(){
     char c;
     string str;
     cin >> tc;
+    cin.ignore();
     while(tc--){
         stack<char>st;
-        cin >> str;
+        getline(cin, str);
+        //cin >> str;
         flag = 1;
         for(int i=0;i<str.size();i++){
             if(str[i] == '(' || str[i] == '['){
