@@ -1,80 +1,69 @@
 
 #include <bits/stdc++.h>
 using namespace std;
+/// N Log(N) solution for LIS
+int lis(vector<int> const& a) {
+    int n = a.size();
+    const int INF = 1e9;
+    vector<int> d(n+1, INF);
+    d[0] = -INF;
 
-// C++ implementation to find longest increasing subsequence
-// in O(n Log n) time.
-// Binary search
-int GetCeilIndex(vector<int>arr, vector<int> &T, int l, int r,int key)
-{
-    while (r - l > 1)
-    {
-        int m = l + (r - l)/2;
-        if (arr[T[m]] >= key)
-            r = m;
-        else
-            l = m;
+    for (int i = 0; i < n; i++) {
+        int j = upper_bound(d.begin(), d.end(), a[i]) - d.begin();
+        if (d[j-1] < a[i] && a[i] < d[j])
+            d[j] = a[i];
     }
 
-    return r;
+    int ans = 0;
+    for (int i = 0; i <= n; i++) {
+        if (d[i] < INF)
+            ans = i;
+    }
+    return ans;
 }
 
-int LongestIncreasingSubsequence(vector<int> arr, int n)
-{
-    // Add boundary case, when array n is zero
-    // Depend on smart pointers
 
-    vector<int> tailIndices(n, 0); // Initialized with 0
-    vector<int> prevIndices(n, -1); // initialized with -1
-
-    int len = 1; // it will always point to empty location
-    for (int i = 1; i < n; i++)
-    {
-        if (arr[i] < arr[tailIndices[0]])
-        {
-            // new smallest value
-            tailIndices[0] = i;
-        }
-        else if (arr[i] > arr[tailIndices[len-1]])
-        {
-            // arr[i] wants to extend largest subsequence
-            prevIndices[i] = tailIndices[len-1];
-            tailIndices[len++] = i;
-        }
-        else
-        {
-            // arr[i] wants to be a potential condidate of
-            // future subsequence
-            // It will replace ceil value in tailIndices
-            int pos = GetCeilIndex(arr, tailIndices, -1,
-                                   len-1, arr[i]);
-
-            prevIndices[i] = tailIndices[pos-1];
-            tailIndices[pos] = i;
+vector<int> lis(vector<int> const& a) {
+    int n = a.size();
+    vector<int> d(n, 1), p(n, -1);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (a[j] < a[i] && d[i] < d[j] + 1) {
+                d[i] = d[j] + 1;
+                p[i] = j;
+            }
         }
     }
 
-    cout << "LIS of given input" << endl;
-    for (int i = tailIndices[len-1]; i >= 0; i = prevIndices[i])
-        cout << arr[i] << " ";
-    cout << endl;
+    int ans = d[0], pos = 0;
+    for (int i = 1; i < n; i++) {
+        if (d[i] > ans) {
+            ans = d[i];
+            pos = i;
+        }
+    }
 
-    return len;
+    vector<int> subseq;
+    while (pos != -1) {
+        subseq.push_back(a[pos]);
+        pos = p[pos];
+    }
+    reverse(subseq.begin(), subseq.end());
+    return subseq;
 }
-
 int main()
 {
     vector<int> v;
 
-    v.push_back(2);
-    v.push_back(5);
-    v.push_back(3);
-    v.push_back(7);
-    v.push_back(11);
-    v.push_back(8);
-    v.push_back(10);
-    v.push_back(13);
-    v.push_back(6);
+    v.push_back(389);
+    v.push_back(207);
+    v.push_back(155);
+    v.push_back(300);
+    v.push_back(299);
+    v.push_back(170);
+    v.push_back(158);
+    v.push_back(65);
+    //v.push_back(6);
     /*
     long long int n,a;
     cin >> n;
@@ -83,7 +72,12 @@ int main()
         v.push_back(a);
     }
     */
-    cout << "Length of Longest Increasing Subsequence is " << LongestIncreasingSubsequence(v,v.size()) << 'n';
+    reverse(v.begin(),v.end());
+    vector<int>vv = lis(v);
+    for(auto it: vv){
+        cout << it << endl;
+    }
+    cout << "Length of Longest Increasing Subsequence is " << lis(v).size() << '\n';
 /*
 LIS of given input
 13 10 8 7 3 2
