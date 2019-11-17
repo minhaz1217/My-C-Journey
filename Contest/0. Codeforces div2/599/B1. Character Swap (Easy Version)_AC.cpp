@@ -5,7 +5,7 @@ Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
 Problem Link:
-Date : 31 / October / 2019
+Date : 06 / November / 2019
 Comment:
 */
 #include<bits/stdc++.h>
@@ -21,41 +21,37 @@ using namespace std;
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 
-bool cmp(string a, string b){
-    stringstream ss1(a), ss2(b);
-    long long int aa,bb;
-    ss1 >> aa;
-    ss2 >> bb;
-    return aa>=bb;
-}
 int main(){
-    long long int caseCounter = 1,n,tc,l,r;
-    cin.tie(0);
-    ios::sync_with_stdio(false);
-    string str,myStr,a,b,myStr2;
+    long long int tc,n,counter,mainFlag, flag;
+    char a,b;
+    string str1,str2;
     cin >> tc;
     while(tc--){
-        myStr = "";
-        myStr2 = "";
-        vector<string>vec;
         cin >> n;
+        cin >> str1 >> str2;
+        counter = 0;
+        mainFlag = 0;
+        flag = 0;
         for(int i=0;i<n;i++){
-            cin >> str;
-            vec.push_back(str);
+            if(str2[i] != str1[i] && flag == 0 && mainFlag == 0){
+                a = str1[i];
+                b = str2[i];
+                flag = 1;
+            }else if(str1[i] != str2[i] && flag == 1 && mainFlag == 0){
+                if(str1[i] == a && str2[i] == b){
+                    mainFlag = 1;
+                }
+            }
+            if(str1[i] != str2[i]){
+                counter++;
+            }
         }
-        sort(vec.begin(),vec.end());
-        for(int i=0;i<vec.size();i++){
-            myStr += vec[i];
+        if(counter==2 && mainFlag == 1){
+            cout << "Yes" << endl;
+        }else{
+            cout << "No" << endl;
         }
-        for(int i=vec.size()-1;i>=0;i--){
-            myStr2 += vec[i];
-            //myStr2.push_back(vec[i]);
-        }
-        vector<string>vec2;
-        vec2.push_back(myStr);
-        vec2.push_back(myStr2);
-        sort(vec2.begin(),vec2.end());
-        cout << "Case " << caseCounter++ << ": " << vec2[1] << endl;
+
     }
     return 0;
 }
