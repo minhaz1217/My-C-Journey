@@ -1,11 +1,10 @@
 /*
 Minhazul Hayat Khan
-minhaz1217.github.io
 Website: www.minhazul.com
 EWU, Bangladesh
 Problem Name:
 Problem Link:
-Date : 28 / October / 2019
+Date : 19 / January / 2020
 Comment:
 */
 #include<bits/stdc++.h>
@@ -20,23 +19,16 @@ using namespace std;
 #define msg4(a,b,c,d,e) DEBUG==1?(cout << a << " : " << b << " : " << c << " : " << d << " : " << e << endl):cout<<"";
 #define _INIT ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
-void mp(string *str){
-    for(int i=0;i<3;i++){
-        str[i] = str[i] + " WORLD";
-    }
-}
-int main(){
-    string sst[3],*mySst;
-    for(int i=0;i<3;i++){
-        cin >> sst[i];
-    }
-    for(int i=0;i<3;i++){
-        cout << sst[i] << endl;
-    }
-    mp(sst);
 
-    for(int i=0;i<3;i++){
-        cout << sst[i] << endl;
+int main(){
+    map<int,int>mp1,mp2;
+    mp1[10]=10;
+    mp1[20]=10;
+    mp2[10]=10;
+    mp2[20]=10;
+    mp1.merge(mp2.begin(),mp2.end());
+    for(auto it: mp1){
+        msg(it.first, it.second)
     }
     return 0;
 }
