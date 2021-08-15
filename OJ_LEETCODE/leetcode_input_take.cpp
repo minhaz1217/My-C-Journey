@@ -24,6 +24,10 @@ using namespace std;
 [[7,3,6],[1,4,5],[9,8,2]]
 
 [[7.1,3.1,6.1],[1.9,4.9,5.9],[9.5,8.1,2.9]]
+
+Vector Int:
+[1,3,2,2,2,3,4,3,1]
+[1,1,1]
 */
 template <typename T>
 class LeetCodeInputTaker{
@@ -32,53 +36,71 @@ vector< vector<string> > vectorVectorString(string str){
     str = str.substr( 1, str.size()-2 );
     while(str.size() > 0){
         int leftBracketPosition = str.find('[');
-        vector<string> insideVector;
         if(leftBracketPosition == -1){
             break;
         }
         int rightBracketPosition = str.find(']');
-        string tempStr = str.substr( leftBracketPosition+1, rightBracketPosition - leftBracketPosition-1);
+        string workingString = str.substr( leftBracketPosition+1, rightBracketPosition - leftBracketPosition-1);
         str = str.substr(rightBracketPosition+1, str.size());
-        int commaPosition = tempStr.find(',');
-        while(tempStr.size() > 0){
-            commaPosition = tempStr.find(',');
-            if(commaPosition == -1){
-                insideVector.push_back(tempStr);
-                break;
-            }
-            string tempStr2 = tempStr.substr(0, commaPosition);
-            insideVector.push_back(tempStr2);
-            tempStr = tempStr.substr(commaPosition+1, tempStr.size());
-        }
-//        cout << "INSIDE" << endl;
-//        for(int i=0;i<insideVector.size();i++){
-//            cout << insideVector[i] << " ";
-//        }
-//        cout << endl;
-        mainVec.push_back(insideVector);
+        mainVec.push_back(csvToVector(workingString));
     }
     return mainVec;
 }
-vector<vector<T> > convertStringToInt(vector<vector<string> > vec){
+
+vector<string> csvToVector(string str){
+    string tempStr = str;
+    vector<string> insideVector;
+    int commaPosition = tempStr.find(',');
+    while(tempStr.size() > 0){
+        commaPosition = tempStr.find(',');
+        if(commaPosition == -1){
+            insideVector.push_back(tempStr);
+            break;
+        }
+        string tempStr2 = tempStr.substr(0, commaPosition);
+        insideVector.push_back(tempStr2);
+        tempStr = tempStr.substr(commaPosition+1, tempStr.size());
+    }
+    return insideVector;
+}
+
+vector<string> vectorString(string str){
+    int leftBracket = str.find('[');
+    int rightBracket = str.find(']');
+    string workingString = str.substr( leftBracket +1 , rightBracket - leftBracket -1 );
+    return csvToVector(workingString);
+}
+
+vector<T> convertFromString(vector<string> vec){
+    int a;
+    vector<T> nestedVec;
+    for(int j=0;j<vec.size();j++){
+        stringstream ss(vec[j]);
+        T a;
+        ss >> a;
+        nestedVec.push_back(a);
+    }
+    return nestedVec;
+}
+
+vector<vector<T> > convertFromString(vector<vector<string> > vec){
     vector<vector<T> > mainVec;
     for(int i=0;i<vec.size();i++){
-        vector<T> nestedVec;
-        for(int j=0;j<vec[i].size();j++){
-            stringstream ss(vec[i][j]);
-            T a;
-            ss >> a;
-            nestedVec.push_back(a);
-        }
-        mainVec.push_back(nestedVec);
+        mainVec.push_back(convertFromString( vec[i] ));
     }
     return mainVec;
 }
 
 public:
-    vector<vector<T> > take(){
+    vector<vector<T> > takeVV(){
         string str;
         getline(cin, str);
-        return convertStringToInt(vectorVectorString(str));
+        return convertFromString(vectorVectorString(str));
+    }
+    vector<T> takeV(){
+        string str;
+        getline(cin, str);
+        return convertFromString(vectorString(str));
     }
     void display(vector<vector<T> > input, int padding = 5){
         for(int i=0;i<input.size();i++){
@@ -88,13 +110,21 @@ public:
             cout << endl;
         }
     }
+    void display(vector<T> input, int padding = 5){
+        for(int i=0;i<input.size();i++){
+            cout << right << setw(padding) << input[i];
+        }
+        cout << endl;
+    }
 
 };
 
 int main(){
-    LeetCodeInputTaker<float> input;
-    vector<vector<float> > vec = input.take();
-    input.display(vec, 3);
+    LeetCodeInputTaker<int> input;
+    vector<vector<int> > v;
+//    vector<int> v;
+    v = input.takeVV();
+    input.display(v, 3);
 //    for(int i=0;i<vec.size();i++){
 //        for(int j=0;j<vec[i].size();j++){
 //            cout << vec[i][j] << "\t ";
