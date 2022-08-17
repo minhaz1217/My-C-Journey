@@ -44,13 +44,14 @@ void sieve(){
 int main(){
     _INIT;
     sieve();
+    mark[1] = 1;
     int tc,a,b,counter;
     cin >> tc;
     while(tc--){
         cin >> a >> b;
         counter = 0;
         for(int i=a;i<=b;i++){
-            if(prime[i]){
+            if(mark[i]==0){
                 counter++;
             }
         }

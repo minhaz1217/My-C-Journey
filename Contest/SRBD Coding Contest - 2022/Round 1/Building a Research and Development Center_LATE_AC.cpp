@@ -81,10 +81,10 @@ public:
 
 };
 
+disjoint_set dj(100010);
 int main(){
     _INIT;
     int tc,q,a,b;
-    disjoint_set dj(tc + 3);
     cin >> tc >> q;
     while(tc--){
         cin >> a;
@@ -101,7 +101,7 @@ int main(){
         }else if(a == 2){
             cin >> a;
             dj.promote(a);
-        }else{
+        }else if(a==3 || a== 0){
             cin >> a;
             //cout << mp[a] << endl;
             cout << dj.findSeniorId(a) << endl;
