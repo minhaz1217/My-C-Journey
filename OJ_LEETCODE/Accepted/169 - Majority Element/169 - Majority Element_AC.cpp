@@ -12,24 +12,32 @@ Date : 01 / Feb / 2024
 Comment:
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int majorityElement(vector<int>& nums) {
-        map<int,int> mp;
-        for(int i=0;i<nums.size();i++){
-            if(mp.find(nums[i]) == mp.end()){
+    int majorityElement(vector<int> &nums)
+    {
+        map<int, int> mp;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (mp.find(nums[i]) == mp.end())
+            {
                 mp[nums[i]] = 1;
-            }else{
+            }
+            else
+            {
                 mp[nums[i]]++;
             }
         }
 
-        int highestCount=-mp[nums[0]], highestNumber=nums[0];
-        for(int i=0;i<nums.size();i++){
-            if(highestCount < mp[nums[i]] ){
+        int highestCount = -mp[nums[0]], highestNumber = nums[0];
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (highestCount < mp[nums[i]])
+            {
                 highestCount = mp[nums[i]];
                 highestNumber = nums[i];
             }
@@ -38,7 +46,8 @@ public:
     }
 };
 
-int main(){
+int main()
+{
     Solution s;
     vector<int> vec;
     vec.push_back(2);
@@ -51,7 +60,7 @@ int main(){
     // input: [2,2,1,1,1,2,2] output: 2
     int expectedOutput = 2;
     int output = s.majorityElement(vec);
-    bool passed = expectedOutput == output;
+    string passed = expectedOutput == output == 1 ? "passed" : "failed";
     cout << "Output: " << output << " Passed?: " << passed << endl;
     return 0;
 }

@@ -6,10 +6,10 @@ Bangladesh
 
 Problem Name:
 Problem Link: https://leetcode.com/problems/majority-element/
-Complexity: O(n) O(2)
+Complexity: O(nlogn)
 Date : 01 / Feb / 2024
 
-Comment: Trying to solve using Boyer-Moore Majority Voting Algorithm
+Comment:
 */
 
 #include<bits/stdc++.h>
@@ -18,18 +18,8 @@ using namespace std;
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int candidate = 0, votes = 0;
-        for(int i=0;i<nums.size();i++){
-            if(votes == 0){
-                candidate = nums[i];
-            }
-            if(nums[i] == candidate){
-                votes++;
-            }else{
-                votes--;
-            }
-        }
-        return candidate;
+        sort(nums.begin(), nums.end());
+        return nums[nums.size()/2];
     }
 };
 
@@ -46,7 +36,7 @@ int main(){
     // input: [2,2,1,1,1,2,2] output: 2
     int expectedOutput = 2;
     int output = s.majorityElement(vec);
-    string passed = expectedOutput == output == 1 ? "passed" : "failed" ;
+    string passed = expectedOutput == output == 1 ? "passed" : "failed";
     cout << "Output: " << output << " Passed?: " << passed << endl;
     return 0;
 }
