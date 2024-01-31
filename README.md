@@ -18,7 +18,50 @@ There are several types of folder.
 * how to declare long long
 * how to do foreach loop
 
+# C#
+```
+Stack<int> stackOfNumbers = new Stack<int>();
+stackOfNumbers.Push(50);
+stackOfNumbers.Pop();
+stackOfNumbers.Peek();
+stackOfNumbers.Count;
+stackOfNumbers.Clear();
 
+var queue = new Queue<int>();
+queue.Enqueue(52);
+queue.Dequeue();
+queue.Peek();
+var size = queue.Count;
+queue.Clear();
+
+// string to int
+int.Parse(str)
+double.Parse(str)
+
+// Length of array
+var arr = new string[]{"H", "e", "l"};
+arr.Length
+```
+
+C++
+```
+// string to int,long, long long
+stoi("50")
+stol("50")
+stoll("50")
+stof("50")
+stod("50")
+stold("50")
+
+atoi
+atol
+atoll
+
+// int, doule to string
+int i=50, d=50.5;
+i.to_string()
+d.to_string()
+```
 ## How to setup environment
 ### C++
 * Install C/C++ extension >> ms-vscode.cpptools
