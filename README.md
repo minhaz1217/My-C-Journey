@@ -159,4 +159,11 @@ This will add a `tasks.json` file in the .vscode folder
 * install ts-node using `npm install -g ts-node`
 `.vscode/launch.json` file
 ```
+{
+    "name": "Run TypeScript",
+    "type": "node",
+    "request": "launch",
+    "runtimeExecutable": "ts-node",
+    "program": "${fileDirname}\\${fileBasenameNoExtension}.ts"
+}
 ```
