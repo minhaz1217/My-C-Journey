@@ -45,6 +45,10 @@ arr.Length
 
 C++
 ```
+// convert array to vector
+int x[3] = {1, 2, 3};
+vector<int> v(x, x + sizeof x / sizeof x[0]);
+
 // string to int,long, long long
 stoi("50")
 stol("50")
@@ -69,6 +73,7 @@ d.to_string()
 * If a configuration panel is shown, select the C++ option.
 
 This will add a `tasks.json` file in the .vscode folder
+`.vscode/tasks.json`
 ```tasks.json
 {
     "tasks": [
@@ -99,6 +104,7 @@ This will add a `tasks.json` file in the .vscode folder
     "version": "2.0.0"
 }
 ```
+`.vscode/launch.json`
 ```launch.json
 {
     "version": "0.2.0",
@@ -131,4 +137,26 @@ This will add a `tasks.json` file in the .vscode folder
         }
     ]
 }
+```
+
+### Javascript setup
+* install node
+`.vscode/launch.json` file
+```
+{
+    "name": "Run JS",
+    "program": "${fileDirname}\\${fileBasenameNoExtension}.js",
+    "request": "launch",
+    "skipFiles": [
+        "<node_internals>/**"
+    ],
+    "type": "node"
+}
+```
+
+### Typescript setup
+* install node
+* install ts-node using `npm install -g ts-node`
+`.vscode/launch.json` file
+```
 ```
