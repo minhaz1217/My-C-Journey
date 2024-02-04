@@ -167,3 +167,8 @@ This will add a `tasks.json` file in the .vscode folder
     "program": "${fileDirname}\\${fileBasenameNoExtension}.ts"
 }
 ```
+
+### Run C# file
+```
+csc test.cs & test.exe
+```
