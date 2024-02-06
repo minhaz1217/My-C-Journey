@@ -39,11 +39,14 @@ public:
     }
 };
 
+
+typedef vector<string> TestCaseType;
+typedef vector<vector<string>> ExpectedOutputType;
 class TestCase{
     public:
-    vector<string> strs;
-    vector<vector<string>> expectedOutput;
-    TestCase(vector<string> _strs, vector<vector<string>> _expectedOutput){
+    TestCaseType strs;
+    ExpectedOutputType expectedOutput;
+    TestCase(TestCaseType _strs, ExpectedOutputType _expectedOutput){
         strs = _strs;
         expectedOutput = _expectedOutput;
     }
@@ -52,10 +55,10 @@ class TestCase{
 int main(){
     // arrange
     vector<TestCase> testCases;
-    testCases.push_back(TestCase(vector<string>({"eat","tea","tan","ate","nat","bat"}), 
-                                vector<vector<string>>({ vector<string>({"bat"}),vector<string>({"eat","tea","ate"}),vector<string>({"tan","nat"})})));
-    testCases.push_back(TestCase(vector<string>({""}), vector<vector<string>>({vector<string>({""})})));
-    testCases.push_back(TestCase(vector<string>({"a"}), vector<vector<string>>({vector<string>({"a"})})));
+    testCases.push_back(TestCase(TestCaseType({"eat","tea","tan","ate","nat","bat"}), 
+                                ExpectedOutputType({ vector<string>({"bat"}),vector<string>({"eat","tea","ate"}),vector<string>({"tan","nat"})})));
+    testCases.push_back(TestCase(TestCaseType({""}), ExpectedOutputType({vector<string>({""})})));
+    testCases.push_back(TestCase(TestCaseType({"a"}), ExpectedOutputType({vector<string>({"a"})})));
 
     // execution
     Solution s;
@@ -64,7 +67,7 @@ int main(){
     bool allPassed = true;
     for(int i=0;i<testCases.size();i++){
         TestCase testCase = testCases[i];
-        vector<vector<string>> result = s.groupAnagrams(testCase.strs);
+        ExpectedOutputType result = s.groupAnagrams(testCase.strs);
         bool passed = result == testCase.expectedOutput;
         if(passed == false){
             allPassed = false;
