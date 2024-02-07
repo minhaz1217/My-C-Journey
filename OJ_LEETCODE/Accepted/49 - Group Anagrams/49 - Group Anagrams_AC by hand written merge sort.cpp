@@ -90,18 +90,14 @@ class TestCase{
 int main(){
     // arrange
     vector<TestCase> testCases;
-    // testCases.push_back(TestCase(TestCaseType({"eat","tea","tan","ate","nat","bat"}), 
-    //                             ExpectedOutputType({ vector<string>({"bat"}),vector<string>({"eat","tea","ate"}),vector<string>({"tan","nat"})})));
-    // testCases.push_back(TestCase(TestCaseType({""}), ExpectedOutputType({vector<string>({""})})));
-    // testCases.push_back(TestCase(TestCaseType({"a"}), ExpectedOutputType({vector<string>({"a"})})));
-    testCases.push_back(TestCase(TestCaseType({"and","dan"}), ExpectedOutputType({vector<string>({"a"})})));
+    testCases.push_back(TestCase(TestCaseType({"eat","tea","tan","ate","nat","bat"}), 
+                                ExpectedOutputType({ vector<string>({"bat"}),vector<string>({"eat","tea","ate"}),vector<string>({"tan","nat"})})));
+    testCases.push_back(TestCase(TestCaseType({""}), ExpectedOutputType({vector<string>({""})})));
+    testCases.push_back(TestCase(TestCaseType({"a"}), ExpectedOutputType({vector<string>({"a"})})));
+    testCases.push_back(TestCase(TestCaseType({"and","dan"}), ExpectedOutputType({vector<string>({"and","dan"})})));
 
     // execution
     Solution s;
-    // vector<int> vec({6,5,4,8,6,49,7,1});
-    // for(auto it: s.mergeSort(vec, 0, vec.size()-1)){
-    //     cout << it << endl;
-    // }
 
     // assert
     bool allPassed = true;

@@ -17,6 +17,11 @@ There are several types of folder.
 * Stack's size, is empty, clear, push, pop, top
 * how to declare long long
 * how to do foreach loop
+* How to make a single character to string
+* 
+
+## Things to revise in general
+* How to do merge sort by hand
 
 # C#
 ```
