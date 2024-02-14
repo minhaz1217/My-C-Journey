@@ -4,10 +4,10 @@ https://minhazul.com
 github.com/minhaz1217
 Bangladesh
 
-Problem Name: Perfect Squares
-Problem Link: https://leetcode.com/problems/perfect-squares/
+Problem Name: Word Pattern
+Problem Link: https://leetcode.com/problems/word-pattern/
 Complexity: 
-Date : 07 / Feb / 2024
+Date : 12 / Feb / 2024
 
 Comment:
 */
