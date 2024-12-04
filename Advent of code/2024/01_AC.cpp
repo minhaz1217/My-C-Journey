@@ -25,7 +25,21 @@ int main(){
     for(int i=0;i<list1.size();i++){
         sum += abs(list1[i] - list2[i]);
     }
-    cout << sum;
+    cout << "Sum: " << sum << endl;
+
+    // for part 2
+    long long int similarity = 0;
+    for(int i=0;i<list1.size();i++){
+        int counter = 0;
+        for(int j=0;j<list2.size();j++){
+            if(list1[i] == list2[j]){
+                counter++;
+            }
+        }
+
+        similarity += list1[i] * counter;
+    }
+    cout << "Similarity: " << similarity << endl;
 
     return 0;
 }
@@ -38,7 +52,7 @@ int main(){
 3   3
 */
 
-/* actual input, answer = 1580061
+/* actual input, answer , sum= 1580061, similarity = 23046913
 77221   93653
 61169   27995
 49546   69782
